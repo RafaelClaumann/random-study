@@ -1,16 +1,15 @@
 
 ### Exemplo 1:
 ```text
-O contexto deste exemplo é converter um model em entity utilizando o MapStruct.
+O contexto deste exemplo é converter um model em entity utilizando o Mapstruct.
 São feitas validações e conversões de tipos nos atributos obrigatórios & não obrigatórios.
 ```
+#### Links Mapstruct:
+- [mapstruct](https://mapstruct.org/)
+- [javadoc](https://mapstruct.org/documentation/stable/api/)
+- [reference guide](https://mapstruct.org/documentation/dev/reference/pdf/mapstruct-reference-guide.pdf)
 
-[Model](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/SolicitacaoModelEX1.java) |
-[Entity](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/SolicitacaoEntityEX1.java) |
-[Mapper](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/MapperEX1.java) |
-[Testes Unitarios](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/test/java/exemplo_1/MapperEX1Test.java)
-
-
+#### Pontos Importantes:
 - Foi preciso criar um método para validar atributos nulos chamado **beforeMapping()**
   - O método criado deve ser no "máximo" `protected` e anotado com [@BeforeMapping](https://mapstruct.org/documentation/stable/reference/html/#customizing-mappings-with-before-and-after)
   - O atributo `description` é opcional
