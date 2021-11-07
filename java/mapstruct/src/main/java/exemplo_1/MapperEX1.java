@@ -12,17 +12,17 @@ import java.util.Optional;
 @Mapper
 public abstract class MapperEX1 {
 
-    @Mapping(target = "valor", qualifiedByName = "convertDouble")
-    @Mapping(source = "valorModel", target = "valorEntity", qualifiedByName = "convertBigDecimal")
+    @Mapping(target = "valor", qualifiedByName = "convertBigDecimal")
+    @Mapping(source = "valorModel", target = "valorEntity", qualifiedByName = "convertDouble")
     public abstract SolicitacaoEntityEX1 toEntity(final SolicitacaoModelEX1 model);
 
-    @Named("convertDouble")
-    public String convertDouble(final BigDecimal valor) {
+    @Named("convertBigDecimal")
+    public String convertBigDecimal(final BigDecimal valor) {
         return valor.toString();
     }
 
-    @Named("convertBigDecimal")
-    public String convertBigDecimal(final Double valorModel) {
+    @Named("convertDouble")
+    public String convertDouble(final Double valorModel) {
         return valorModel.toString();
     }
 
