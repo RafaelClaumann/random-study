@@ -16,11 +16,11 @@ salvar a entidade no banco de dados utilizando a biblioteca MapStruct.
 ```
 - É preciso criar métodos auxiliares para conversão de tipos, usar `qualifiedByName` no @Mapping e anotar o método com @Named
 ``` java
-    @Mapping(source = "valorModel", target = "valorEntity", qualifiedByName = "convertBigDecimal") 
+    @Mapping(source = "valorModel", target = "valorEntity", qualifiedByName = "convertDouble") 
     public abstract SolicitacaoEntity toEntity(final SolicitacaoModel model);
     
-    @Named("convertBigDecimal")
-    public String convertBigDecimal(final Double valorModel) {
+    @Named("convertDouble")
+    public String convertDouble(final Double valorModel) {
         return valorModel.toString();
     }
 ```
