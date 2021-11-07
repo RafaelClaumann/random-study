@@ -14,7 +14,7 @@ São feitas validações e conversões de tipos nos atributos obrigatórios & n�
   - O método criado deve ser no "máximo" `protected` e anotado com [@BeforeMapping](https://mapstruct.org/documentation/stable/reference/html/#customizing-mappings-with-before-and-after)
   - O atributo `description` é opcional
   - Os atributos `valorModel` e `valor` são obrigatórios para ***"salvar a entidade no banco de dados"***
-- Atributos com nomes iguais no **model** & **entity** não precisam de `source` no **@Mapping**
+- Atributos com nomes iguais no **model** & **entity** não precisam de `source` no [@Mapping](https://mapstruct.org/documentation/stable/api/)
 ``` java
     @Mapping(target = "valor") // nomes de atributo iguais no model & entity
     @Mapping(source = "valorModel", target = "valorEntity") // nomes de atributo diferentes no model & entity
