@@ -6,7 +6,7 @@ salvar a entidade no banco de dados utilizando a biblioteca MapStruct.
 ```
 - Foi preciso criar um método para validar attributos nulos chamado **beforeMapping()**
   - O método criado deve ser no "máximo" `protected` e anotado com [@BeforeMapping](https://mapstruct.org/documentation/stable/reference/html/#customizing-mappings-with-before-and-after)
-  - O atributo **description** é opcional, então não é preciso valida-lo
+  - O atributo `description` é opcional, então não é preciso valida-lo
   - Os atributos `valorModel` e `valor` são obrigatórios para ***"salvar a entidade no banco de dados"***
 - Atributos com nomes iguais no **model** & **entity** não precisam de `source` no **@Mapping**
 ``` java
