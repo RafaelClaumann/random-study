@@ -24,3 +24,8 @@ salvar a entidade no banco de dados utilizando a biblioteca MapStruct.
         return valorModel.toString();
     }
 ```
+
+<br> 
+
+### [Mapper](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/MapperEX1.java)
+### [Testes Unitarios](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/test/java/exemplo_1/MapperEX1Test.java)
