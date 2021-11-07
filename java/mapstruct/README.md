@@ -1,12 +1,19 @@
 
 ### Exemplo 1:
 ```text
-O contexto deste exemplo é conveter um model(SolicitacaoModel) em uma entity(SolicitacaoEntity) para
-salvar a entidade no banco de dados utilizando a biblioteca MapStruct.
+O contexto deste exemplo é converter um model em entity utilizando o MapStruct.
+São feitas validações e conversões de tipos nos atributos obrigatórios & não obrigatórios.
 ```
-- Foi preciso criar um método para validar attributos nulos chamado **beforeMapping()**
+
+[Model](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/SolicitacaoModelEX1.java) |
+[Entity](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/SolicitacaoEntityEX1.java) |
+[Mapper](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/MapperEX1.java) |
+[Testes Unitarios](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/test/java/exemplo_1/MapperEX1Test.java)
+
+
+- Foi preciso criar um método para validar atributos nulos chamado **beforeMapping()**
   - O método criado deve ser no "máximo" `protected` e anotado com [@BeforeMapping](https://mapstruct.org/documentation/stable/reference/html/#customizing-mappings-with-before-and-after)
-  - O atributo `description` é opcional, então não é preciso valida-lo
+  - O atributo `description` é opcional
   - Os atributos `valorModel` e `valor` são obrigatórios para ***"salvar a entidade no banco de dados"***
 - Atributos com nomes iguais no **model** & **entity** não precisam de `source` no **@Mapping**
 ``` java
@@ -24,8 +31,3 @@ salvar a entidade no banco de dados utilizando a biblioteca MapStruct.
         return valorModel.toString();
     }
 ```
-
-<br> 
-
-### [Mapper](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/main/java/exemplo_1/MapperEX1.java)
-### [Testes Unitarios](https://github.com/RafaelClaumann/random-study/blob/main/java/mapstruct/src/test/java/exemplo_1/MapperEX1Test.java)
