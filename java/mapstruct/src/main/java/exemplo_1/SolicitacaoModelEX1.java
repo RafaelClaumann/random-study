@@ -23,4 +23,6 @@ public class SolicitacaoModelEX1 {
     private BigDecimal valor;
     private String description;
 
+    private Boolean randomAttribute;
+
 }

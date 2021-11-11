@@ -21,4 +21,6 @@ public class SolicitacaoEntityEX1 {
     private String valor;
     private String description;
 
+    private Boolean randomAttribute;
+
 }

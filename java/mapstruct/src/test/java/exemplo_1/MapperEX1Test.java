@@ -21,6 +21,7 @@ class MapperEX1Test {
                 .valorModel(Double.parseDouble("500.0"))
                 .valor(BigDecimal.valueOf(124.34513))
                 .description("descrição da solicitação!")
+                .randomAttribute(Boolean.TRUE)
                 .build();
 
         SolicitacaoEntityEX1 entity = mapperEX1.toEntity(model);
@@ -32,7 +33,8 @@ class MapperEX1Test {
                 () -> Assertions.assertNotNull(entity),
                 () -> Assertions.assertEquals(model.getValorModel().toString(), entity.getValorEntity()),
                 () -> Assertions.assertEquals(model.getValor().toString(), entity.getValor()),
-                () -> Assertions.assertEquals(model.getDescription(), entity.getDescription())
+                () -> Assertions.assertEquals(model.getDescription(), entity.getDescription()),
+                () -> Assertions.assertEquals(model.getRandomAttribute(), entity.getRandomAttribute())
         );
     }
 
