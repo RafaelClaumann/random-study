@@ -7,10 +7,14 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class Example01Service {
 
-    RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
+
+    public Example01Service(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public ResponseEntity<String> test() {
-        ResponseEntity<String> forEntity = this.restTemplate.getForEntity("https://random-data-api.com/api/stripe/random_stripe", String.class);
-        return forEntity;
+        return this.restTemplate.getForEntity("https://random-data-api.com/api/stripe/random_stripe", String.class);
     }
+
 }
