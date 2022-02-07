@@ -16,8 +16,8 @@ public class Example01Controller {
     }
 
     @GetMapping
-    public ResponseEntity<String> makeRequest() {
-        ResponseEntity<String> response = this.example01Service.test();
+    public ResponseEntity<String> callService() {
+        ResponseEntity<String> response = this.example01Service.doRestRequest();
         return response;
     }
 }
