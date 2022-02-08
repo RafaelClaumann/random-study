@@ -8,29 +8,29 @@ import org.springframework.stereotype.Component;
 public class Example01ServiceConfiguration {
 
     private String randomDataApiUrl;
-    private String randomFoodApiPath;
+    private String randomVehicleApiPath;
 
     public Example01ServiceConfiguration() { }
 
-    public Example01ServiceConfiguration(String randomDataApiUrl, String randomFoodApiPath) {
+    public Example01ServiceConfiguration(String randomDataApiUrl, String randomVehicleApiPath) {
         this.randomDataApiUrl = randomDataApiUrl;
-        this.randomFoodApiPath = randomFoodApiPath;
+        this.randomVehicleApiPath = randomVehicleApiPath;
     }
 
     public String getRandomDataApiUrl() {
         return randomDataApiUrl;
     }
 
-    public String getRandomFoodApiPath() {
-        return randomFoodApiPath;
+    public String getRandomVehicleApiPath() {
+        return randomVehicleApiPath;
     }
 
     public void setRandomDataApiUrl(String randomDataApiUrl) {
         this.randomDataApiUrl = randomDataApiUrl;
     }
 
-    public void setRandomFoodApiPath(String randomFoodApiPath) {
-        this.randomFoodApiPath = randomFoodApiPath;
+    public void setRandomVehicleApiPath(String randomVehicleApiPath) {
+        this.randomVehicleApiPath = randomVehicleApiPath;
     }
 
 }
