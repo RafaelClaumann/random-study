@@ -22,7 +22,6 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode(of = {"vehicleID", "vehicleUUID", "makeAndModel", "licensePlate"})
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-// @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Vehicle {
 
     @JsonProperty("uid")
