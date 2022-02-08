@@ -1,6 +1,7 @@
 package com.requests.rest_template;
 
 import com.requests.rest_template.model.Vehicle;
+import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -10,6 +11,8 @@ import java.net.URI;
 @Service
 public class Example01Service {
 
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Example01Service.class);
+    
     private final RestTemplate restTemplate;
     private final Example01ServiceConfiguration serviceConfiguration;
 
@@ -26,7 +29,10 @@ public class Example01Service {
         final String apiPath = this.serviceConfiguration.getRandomVehicleApiPath();
         final URI uri = URI.create(apiURL.concat(apiPath));
 
-        return this.restTemplate.getForEntity(uri, String.class);
+        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(uri, String.class);
+        LOGGER.info("doGetForEntity -> Returning Vehicle Data: {}", responseEntity.getBody());
+
+        return responseEntity;
     }
 
     public Vehicle doGetForObject() {
@@ -34,7 +40,10 @@ public class Example01Service {
         final String apiPath = this.serviceConfiguration.getRandomVehicleApiPath();
         final URI uri = URI.create(apiURL.concat(apiPath));
 
-        return this.restTemplate.getForObject(uri, Vehicle.class);
+        Vehicle responseVehicle = this.restTemplate.getForObject(uri, Vehicle.class);
+        LOGGER.info("doGetForObject -> Returning Vehicle Data: {}", responseVehicle);
+
+        return responseVehicle;
     }
 
 }
