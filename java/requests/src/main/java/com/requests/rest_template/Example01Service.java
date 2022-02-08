@@ -12,35 +12,27 @@ import java.net.URI;
 public class Example01Service {
 
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Example01Service.class);
-    
+
     private final RestTemplate restTemplate;
-    private final Example01ServiceConfiguration serviceConfiguration;
+    private final URI randomVehicleApiURI;
 
     public Example01Service(
             RestTemplate restTemplate,
-            Example01ServiceConfiguration example01ServiceConfiguration
+            Example01ServiceConfiguration serviceConfiguration
     ) {
         this.restTemplate = restTemplate;
-        this.serviceConfiguration = example01ServiceConfiguration;
+        this.randomVehicleApiURI = URI.create(serviceConfiguration.getRandomDataApiUrl().concat(serviceConfiguration.getRandomVehicleApiPath()));
     }
 
     public ResponseEntity<String> doGetForEntity() {
-        final String apiURL = this.serviceConfiguration.getRandomDataApiUrl();
-        final String apiPath = this.serviceConfiguration.getRandomVehicleApiPath();
-        final URI uri = URI.create(apiURL.concat(apiPath));
-
-        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(uri, String.class);
+        ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(this.randomVehicleApiURI, String.class);
         LOGGER.info("doGetForEntity -> Returning Vehicle Data: {}", responseEntity.getBody());
 
         return responseEntity;
     }
 
     public Vehicle doGetForObject() {
-        final String apiURL = this.serviceConfiguration.getRandomDataApiUrl();
-        final String apiPath = this.serviceConfiguration.getRandomVehicleApiPath();
-        final URI uri = URI.create(apiURL.concat(apiPath));
-
-        Vehicle responseVehicle = this.restTemplate.getForObject(uri, Vehicle.class);
+        Vehicle responseVehicle = this.restTemplate.getForObject(this.randomVehicleApiURI, Vehicle.class);
         LOGGER.info("doGetForObject -> Returning Vehicle Data: {}", responseVehicle);
 
         return responseVehicle;
