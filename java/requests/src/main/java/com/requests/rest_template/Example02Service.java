@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -36,6 +37,23 @@ public class Example02Service {
                 );
 
         LOGGER.info("doPostForObjectEmptyBodyLocalhost -> POST Vehicle Data: {}", responseVehicle);
+    }
+
+    public void doPostForEntityEmptyBodyLocalhost() {
+        final MultiValueMap<String, String> headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        final HttpEntity<Vehicle> request = new HttpEntity<>(Vehicle.builder().build(), headers);
+
+        final ResponseEntity<Vehicle> responseVehicle =
+                this.restTemplate.postForEntity(
+                        Example02Service.LOCALHOST_EXAMPLE02,
+                        request,
+                        Vehicle.class
+                );
+
+        LOGGER.info("doPostForEntityEmptyBodyLocalhost -> Response Headers: {}", responseVehicle.getHeaders());
+        LOGGER.info("doPostForEntityEmptyBodyLocalhost -> Response StatusCode: {}", responseVehicle.getStatusCode());
+        LOGGER.info("doPostForEntityEmptyBodyLocalhost -> POST Vehicle Data: {}", responseVehicle);
     }
 
 }

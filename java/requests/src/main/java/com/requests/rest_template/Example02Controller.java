@@ -21,19 +21,25 @@ public class Example02Controller {
         this.example02Service = example02Service;
     }
 
-    @GetMapping
-    public ResponseEntity<String> callPostService() {
+    @GetMapping("forEntity")
+    public ResponseEntity<String> callPostForEntityService() {
+        this.example02Service.doPostForEntityEmptyBodyLocalhost();
+        return ResponseEntity.ok("Performing POST(forEntity) on Example02Controller with RestTemplate");
+    }
+
+    @GetMapping("/forObject")
+    public ResponseEntity<String> callPostForObjectService() {
         this.example02Service.doPostForObjectEmptyBodyLocalhost();
-        return ResponseEntity.ok("Performing POST on Example02Controller with RestTemplate, see application logs");
+        return ResponseEntity.ok("Performing POST(forObject) on Example02Controller with RestTemplate");
     }
 
     @PostMapping
-    public ResponseEntity<Vehicle> post(@RequestBody Vehicle vehicle) {
-        final Vehicle mockedVehicle = this.mockVehicleOnPostReturn();
+    public ResponseEntity<Vehicle> postForObject(@RequestBody Vehicle vehicle) {
+        final Vehicle mockedVehicle = this.mockVehicleForPostReturn();
         return ResponseEntity.ok(mockedVehicle);
     }
 
-    private Vehicle mockVehicleOnPostReturn() {
+    private Vehicle mockVehicleForPostReturn() {
         return Vehicle.builder()
                 .vehicleUUID(UUID.fromString("1bd0d423-67cb-44f5-b114-d8eb312993c5"))
                 .vehicleID(2184L)
