@@ -34,7 +34,7 @@ public class Example02Controller {
     }
 
     @PostMapping
-    public ResponseEntity<Vehicle> postForObject(@RequestBody Vehicle vehicle) {
+    public ResponseEntity<Vehicle> post(@RequestBody Vehicle vehicle) {
         final Vehicle mockedVehicle = this.mockVehicleForPostReturn();
         return ResponseEntity.ok(mockedVehicle);
     }
