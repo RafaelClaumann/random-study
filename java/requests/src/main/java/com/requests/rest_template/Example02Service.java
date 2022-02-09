@@ -4,6 +4,7 @@ import com.requests.rest_template.model.Vehicle;
 import org.slf4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,9 @@ public class Example02Service {
         final HttpEntity<Vehicle> request = new HttpEntity<>(Vehicle.builder().build(), headers);
 
         final ResponseEntity<Vehicle> responseVehicle =
-                this.restTemplate.postForEntity(
+                this.restTemplate.exchange(
                         Example02Service.LOCALHOST_EXAMPLE02,
+                        HttpMethod.POST,
                         request,
                         Vehicle.class
                 );
