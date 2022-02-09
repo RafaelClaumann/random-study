@@ -1,4 +1,4 @@
-package com.requests.rest_template;
+package com.requests.rest_template.example01;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

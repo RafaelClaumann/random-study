@@ -1,4 +1,4 @@
-package com.requests.rest_template;
+package com.requests.rest_template.example02;
 
 import com.requests.rest_template.model.Vehicle;
 import org.slf4j.Logger;

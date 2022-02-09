@@ -1,4 +1,4 @@
-package com.requests.rest_template;
+package com.requests.rest_template.example01;
 
 import com.requests.rest_template.model.Vehicle;
 import org.springframework.http.ResponseEntity;
