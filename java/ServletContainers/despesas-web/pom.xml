@@ -64,6 +64,12 @@
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>11.0.11</version>
+                    <configuration>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                        <webApp>
+                            <contextPath>/despesas-web</contextPath>
+                        </webApp>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
