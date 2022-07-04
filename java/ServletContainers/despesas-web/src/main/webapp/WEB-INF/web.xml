@@ -7,13 +7,4 @@
         metadata-complete="false"
 >
 
-    <servlet>
-        <servlet-name>primeiraServlet</servlet-name>
-        <servlet-class>br.com.despesas.PrimeiraServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>primeiraServlet</servlet-name>
-        <url-pattern>/teste</url-pattern>
-    </servlet-mapping>
 </web-app>
