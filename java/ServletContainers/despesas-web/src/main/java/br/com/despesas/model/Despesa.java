@@ -1,5 +1,7 @@
 package br.com.despesas.model;
 
+import java.util.Objects;
+
 public class Despesa {
 
     private final String descricao;
@@ -47,4 +49,16 @@ public class Despesa {
         return String.format("Despesa { descricao = %s, valor = %,.2f }", this.descricao, this.valor);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Despesa)) return false;
+        Despesa despesa = (Despesa) o;
+        return Objects.equals(getDescricao(), despesa.getDescricao()) && Objects.equals(getValor(), despesa.getValor());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDescricao(), getValor());
+    }
 }
