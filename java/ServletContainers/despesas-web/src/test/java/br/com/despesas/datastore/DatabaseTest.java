@@ -42,8 +42,8 @@ class DatabaseTest {
 
     @Test
     void deveRetornarOptionalEmptyAoBuscarDespesaForaDosLimitesDaLista() {
-        final int indexOutOufBounds = 999;
-        final Optional<Despesa> foundDespesa = this.database.findDespesa(indexOutOufBounds);
+        final int indexOutOfBounds = 999;
+        final Optional<Despesa> foundDespesa = this.database.findDespesa(indexOutOfBounds);
 
         assertEquals(Optional.empty(), foundDespesa);
     }

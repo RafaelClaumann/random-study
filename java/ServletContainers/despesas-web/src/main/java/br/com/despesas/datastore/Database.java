@@ -12,9 +12,8 @@ import java.util.stream.Collectors;
 public final class Database {
 
     private static final Logger LOGGER = Logger.getLogger(Database.class.getName());
-
-    private static Database databaseSingletonInstance;
     private static final List<Despesa> despesasList = new ArrayList<>();
+    private static Database databaseSingletonInstance;
 
     private Database() {
         Database.despesasList.add(new Despesa.DespesaBuilder()
