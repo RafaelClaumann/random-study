@@ -75,6 +75,9 @@
                         <webApp>
                             <contextPath>/despesas-web</contextPath>
                         </webApp>
+                        <httpConnector>
+                            <port>8080</port>
+                        </httpConnector>
                     </configuration>
                 </plugin>
             </plugins>
