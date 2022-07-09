@@ -44,7 +44,7 @@ public final class Database {
 
     public Optional<Despesa> findDespesa(final Integer index) {
         final int arrayLowerBound = 0;
-        if (index > arrayLowerBound && index < Database.despesasList.size()) {
+        if (index >= arrayLowerBound && index < Database.despesasList.size()) {
             final Despesa despesa = Database.despesasList.get(index);
             LOGGER.info(String.format("Retornando despesa do índice { %d }, { %s }", index, despesa));
             return Optional.ofNullable(despesa);
