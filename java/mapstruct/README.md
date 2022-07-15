@@ -20,7 +20,7 @@ São feitas validações e conversões de tipos nos atributos obrigatórios & n�
     @Mapping(source = "valorModel", target = "valorEntity") // nomes de atributo diferentes no model & entity
     public abstract SolicitacaoEntity toEntity(final SolicitacaoModel model);
 ```
-- É preciso criar métodos auxiliares para conversão de tipos, usar `qualifiedByName` no @Mapping e anotar o método com @Named
+- É preciso criar métodos auxiliares para conversão de tipos, usar `qualifiedByName` no @Mapping e anotar o método com @Named. No exemplo abaixo o model possui o atributo `BigDecimal valorModel` enquanto a entity possui o atributo `String valorEntity`.
 ``` java
     @Mapping(source = "valorModel", target = "valorEntity", qualifiedByName = "convertDouble") 
     public abstract SolicitacaoEntity toEntity(final SolicitacaoModel model);
