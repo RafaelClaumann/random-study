@@ -35,14 +35,16 @@ public class DespesasServlet extends HttpServlet {
         final String rawIndex = request.getParameter("index");
         if (Objects.isNull(rawIndex)) {
             response.sendError(SC_BAD_REQUEST, String.format("{ %s } - A URI deve ter um index valido: /despesas-web/?index=<valor>", correlationId));
-            throw new ServletException(String.format("{ %s } - A URI deve ter um index valido: /despesas-web/?index=<valor>", correlationId));
+            LOGGER.log(Level.WARNING, String.format("{ %s } - A URI deve ter um index valido: /despesas-web/?index=<valor>", correlationId));
+            return;
         }
 
         final int parsedIndex = Integer.parseInt(rawIndex);
         final Optional<Despesa> foundDespesa = this.database.findDespesa(parsedIndex);
         if (foundDespesa.isEmpty()) {
             response.sendError(SC_NOT_FOUND, String.format("{ %s } - Despesa nao encontrada no indice { %s }", correlationId, parsedIndex));
-            throw new ServletException(String.format("{ %s } - Despesa nao encontrada no indice { %s }", correlationId, parsedIndex));
+            LOGGER.log(Level.WARNING, String.format("{ %s } - Despesa nao encontrada no indice { %s }", correlationId, parsedIndex));
+            return;
         }
 
         final String despesaJson = this.gson.toJson(foundDespesa.get(), Despesa.class);
