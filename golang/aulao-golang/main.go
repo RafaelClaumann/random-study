@@ -1,15 +1,18 @@
 package main
 import (
-	"net/http"
-	"io"
+	"fmt"
 )
 
 func main() {
+	nome := "Rafael"
+	nome = "Claumann"
+	fmt.Println(nome)
 
-	helloHandler := func(w http.ResponseWriter, req *http.Request) {
-		io.WriteString(w, "Hello, world!\n")
-	}
+	var nome01 string = "Rafael01"
+	nome01 = "Claumann"
+	fmt.Println(nome01)
 
-	http.HandleFunc("/hello", helloHandler);
-	http.ListenAndServe(":8080", nil);
+	var nome02 string
+	nome02 = "Rafael02"
+	fmt.Println(nome02)
 }
