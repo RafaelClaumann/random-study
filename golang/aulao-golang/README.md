@@ -13,3 +13,11 @@ go run ./main.go
 # gera o binário
 go build ./main.go
 ```
+
+---
+
+[documentacao golang](https://go.dev/doc/)
+
+[documentacao pacote net/http](https://pkg.go.dev/net/http)
+
+golang permite criar um webserver nativo usando bibliotecas(`net/http`) nativas da linguagem.
