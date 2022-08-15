@@ -12,7 +12,7 @@ type Car struct {
 func main() {
 	var carro Car = Car{"fusca", 1973}
 	changeYearPointer(&carro, 1974)
-	fmt.Printf("resultado: %v\n", carro)
+	fmt.Printf("resultado: %v\n", carro) // {fusca 1974)
 
 	var carro02 Car = Car{"fusca", 1994}
 	changeYearCopy(carro02, 1995)
