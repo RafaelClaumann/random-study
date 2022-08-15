@@ -51,3 +51,5 @@ O compilador do go não deixa compilar um código com váriaveis declaras e não
 ---
 
 [o que é error?](https://www.educative.io/answers/what-is-type-error-in-golang)
+
+---
