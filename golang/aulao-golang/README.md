@@ -47,3 +47,7 @@ O compilador do go não deixa compilar um código com váriaveis declaras e não
 - floats    - 0.0
 - integers  - 0
 - string    - ""
+
+---
+
+[o que é error?](https://www.educative.io/answers/what-is-type-error-in-golang)

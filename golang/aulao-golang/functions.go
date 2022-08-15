@@ -16,9 +16,12 @@ func main() {
 	var x, y = soma03(5, 4)
 	fmt.Printf("resultado03: %v\t %v\n", x, y)
 
-	var a, b = soma04(5, 4)
-	fmt.Printf("resultado04: %v\t %v\n", a, b)
-
+	var a, b = soma04(4, 5)
+	if b != nil {
+		fmt.Printf("resultado04: %v\n", b)
+	} else {
+		fmt.Printf("resultado04: %v\t %v\n", a, b)
+	}
 }
 
 func soma(a int, b int) int {
