@@ -53,3 +53,14 @@ O compilador do go não deixa compilar um código com váriaveis declaras e não
 [o que é error?](https://www.educative.io/answers/what-is-type-error-in-golang)
 
 ---
+struct e ponteiros golang(1786cb7450e5abd5370c9b551fd1bbc35397e904)
+
+[Como descobrir o tipo do objeto em golang?](https://stackoverflow.com/questions/20170275/how-to-find-the-type-of-an-object-in-go)
+
+[O que são `&` e `*`?](https://stackoverflow.com/questions/38172661/what-is-the-meaning-of-and)
+
+[How pointer & and * and ** works in Golang?](https://www.golangprograms.com/how-pointer-and-and-works-in-golang.html)
+
+[Go by Example: Structs](https://gobyexample.com/structs)
+ 
+---
