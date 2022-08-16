@@ -64,6 +64,7 @@ struct e ponteiros golang(1786cb7450e5abd5370c9b551fd1bbc35397e904)
 [Go by Example: Structs](https://gobyexample.com/structs)
  
 ---
+structs, imports e modules golang(169c7c02f4e60df4766ebbf40636f2bf286d6b0c)
 
 [Golang imports tutorial: how to import Golang local package | Golang tutorial](https://www.youtube.com/watch?v=Nv8J_Ruc280)
 
