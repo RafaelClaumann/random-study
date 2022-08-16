@@ -75,6 +75,7 @@ structs, imports e modules golang(169c7c02f4e60df4766ebbf40636f2bf286d6b0c)
 Se o atributo da `struct` não iniciar com letra maiuscula ele não será exportado, o mesmo acontece paras as `funcs`. Sendo assim, `structs` e `funcs` que iniciam com letra minuscula são visiveis apenas no próprio `package`.
 
 --- 
+arrays golang(7e8818a0c4985d22c8f686baf1cea79684f9c591)
 
 (Arrays golang)[https://linuxhint.com/initialize-array-golang/]
 
