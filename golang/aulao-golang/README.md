@@ -80,3 +80,17 @@ arrays golang(7e8818a0c4985d22c8f686baf1cea79684f9c591)
 [Arrays golang](https://linuxhint.com/initialize-array-golang/)
 
 [Go by Example: Arrays](https://gobyexample.com/arrays)
+
+---
+
+[echo repository GitHub](https://github.com/labstack/echo)
+
+[echo docs - Handling Request: POST JSON Bind](https://echo.labstack.com/guide/#handling-request)
+
+[echo docs - logs middleware config](https://echo.labstack.com/middleware/logger/#custom-configuration)
+
+[echo docs - QueryParameter](https://echo.labstack.com/guide/request/#query-parameters)
+
+[log.Fatal() Fatal is equivalent to Print() followed by a call to os.Exit(1).](https://pkg.go.dev/log#Fatal)
+
+[`new` keyword golang](https://go.dev/doc/effective_go#allocation_new)
