@@ -77,6 +77,6 @@ Se o atributo da `struct` não iniciar com letra maiuscula ele não será export
 --- 
 arrays golang(7e8818a0c4985d22c8f686baf1cea79684f9c591)
 
-(Arrays golang)[https://linuxhint.com/initialize-array-golang/]
+[Arrays golang](https://linuxhint.com/initialize-array-golang/)
 
-(Go by Example: Arrays)[https://gobyexample.com/arrays]
+[Go by Example: Arrays](https://gobyexample.com/arrays)
