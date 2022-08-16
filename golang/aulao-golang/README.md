@@ -64,3 +64,9 @@ struct e ponteiros golang(1786cb7450e5abd5370c9b551fd1bbc35397e904)
 [Go by Example: Structs](https://gobyexample.com/structs)
  
 ---
+
+[Golang imports tutorial: how to import Golang local package | Golang tutorial](https://www.youtube.com/watch?v=Nv8J_Ruc280)
+
+[Exported vs. Unexported Fields (Private vs Public)](https://riptutorial.com/go/example/1255/exported-vs--unexported-fields--private-vs-public-)
+
+Se o atributo da `struct` não iniciar com letra maiuscula ele não será exportado, o mesmo acontece paras as `funcs`. Sendo assim, `structs` e `funcs` que iniciam com letra minuscula são visiveis apenas no próprio `package`.
