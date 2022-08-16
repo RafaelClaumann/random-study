@@ -70,4 +70,6 @@ structs, imports e modules golang(169c7c02f4e60df4766ebbf40636f2bf286d6b0c)
 
 [Exported vs. Unexported Fields (Private vs Public)](https://riptutorial.com/go/example/1255/exported-vs--unexported-fields--private-vs-public-)
 
+[Go struct - ZetCode](https://zetcode.com/golang/struct/)
+
 Se o atributo da `struct` não iniciar com letra maiuscula ele não será exportado, o mesmo acontece paras as `funcs`. Sendo assim, `structs` e `funcs` que iniciam com letra minuscula são visiveis apenas no próprio `package`.
