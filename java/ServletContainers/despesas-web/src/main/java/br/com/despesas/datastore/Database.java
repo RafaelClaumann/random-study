@@ -42,6 +42,10 @@ public final class Database {
         return Database.despesasList.add(despesa);
     }
 
+    public List<Despesa> listAll() {
+        return Database.despesasList;
+    }
+
     public Optional<Despesa> findDespesa(final Integer index) {
         final int arrayLowerBound = 0;
         if (index >= arrayLowerBound && index < Database.despesasList.size()) {

@@ -3,19 +3,26 @@ package br.com.despesas.servlets;
 import br.com.despesas.datastore.Database;
 import br.com.despesas.model.Despesa;
 import com.google.gson.Gson;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static jakarta.servlet.http.HttpServletResponse.*;
 
@@ -34,8 +41,10 @@ public class DespesasServlet extends HttpServlet {
 
         final String rawIndex = request.getParameter("index");
         if (Objects.isNull(rawIndex)) {
-            response.sendError(SC_BAD_REQUEST, String.format("{ %s } - A URI deve ter um index valido: /despesas-web/?index=<valor>", correlationId));
-            LOGGER.log(Level.WARNING, String.format("{ %s } - A URI deve ter um index valido: /despesas-web/?index=<valor>", correlationId));
+            final String despesasListAsString = this.gson.toJson(this.database.listAll(), List.class);
+            response.setStatus(SC_OK);
+            response.getWriter().write(despesasListAsString);
+            LOGGER.log(Level.INFO, String.format("{ %s } - Retornando despesas para o cliente. %s", correlationId, despesasListAsString));
             return;
         }
 
@@ -65,8 +74,9 @@ public class DespesasServlet extends HttpServlet {
 
         final String requestHeaderValue = request.getHeader("Content-Type");
         if (requestHeaderValue.equalsIgnoreCase("application/json")) {
-            Despesa responseBody = this.gson.fromJson(new JsonReader(request.getReader()), Despesa.class);
-            LOGGER.log(Level.INFO, responseBody.toString());
+            Despesa despesa = this.gson.fromJson(new JsonReader(request.getReader()), Despesa.class);
+            this.database.addDespesa(despesa);
+            LOGGER.log(Level.INFO, despesa.toString());
             response.setStatus(SC_OK);
         } else {
             response.sendError(SC_BAD_REQUEST, String.format("{ %s } - Header: Content-Type nao possui valor adequado(application/json)", correlationId));
