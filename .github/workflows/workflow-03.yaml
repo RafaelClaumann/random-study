@@ -16,4 +16,4 @@ jobs:
     steps:
     - name: STEP_print_folder_content
       run: |
-        echo ${{ secrets.AppCenterAPIToken }}
+        echo ${{ secrets.REPOSITORY_SECRET }}
