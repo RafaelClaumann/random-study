@@ -32,7 +32,7 @@ jobs:
           exit 1
     
       - name: STEP_run_on_failure
-        if: ${{ failure() }}
+        if: ${{ !failure() }}
         run: |
           # will not detect a read in a non existing secret
           printf "fail!\n"
