@@ -23,4 +23,7 @@ jobs:
       USER_PASSWORD: "4321"
     steps:
       - name: using_variables
-        run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
+        run: |
+          printf "env vars created on jobs with same name as workflow env vars will
+          override workflow env vars values.\n"
+          printf "{ $USER_NAME } and { $USER_PASSWORD }\n" # claumann and 4321
