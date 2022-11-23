@@ -15,3 +15,12 @@ jobs:
     steps:
       - name: using_variables
         run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
+
+  variables_in_job_level:
+    runs-on: ubuntu-latest
+    env:
+      USER_NAME: "claumann"
+      USER_PASSWORD: "4321"
+    steps:
+      - name: using_variables
+        run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
