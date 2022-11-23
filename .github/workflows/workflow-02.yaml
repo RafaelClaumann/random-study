@@ -46,5 +46,5 @@ jobs:
         run: |
           printf "step env vars overrides workflow env vars values\n"
           printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # bernardes, 98765 and abc-def
-          printf "{ $USE_IN_NEXT_JOB }\n"
+          printf "{ $USE_IN_NEXT_JOB }\n" # null, file system is not shared between Jobs
           cat $GITHUB_ENV
