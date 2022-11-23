@@ -37,10 +37,3 @@ jobs:
           # will not detect a reads on non existing secret
           printf "\nthis step will run if 'STEP_force_exit' fail and 'STEP_force_exit' will always fail!!\n"
           printf "FAIL!\n"
-
-      - name: STEP_run_on_failure_next
-        if: ${{ failure() }}
-        run: |
-          # will not detect a reads on non existing secret
-          printf "\nthis step will run if 'STEP_force_exit' fail and 'STEP_force_exit' will always fail!!\n"
-          printf "FAIL!\n"
