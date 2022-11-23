@@ -13,5 +13,5 @@ jobs:
   job_01:
     runs-on: ubuntu-latest
     steps:
-      - name: use_workflow_level_variables
+      - name: using_workflow_level_variables
         run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
