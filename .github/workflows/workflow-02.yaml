@@ -35,8 +35,8 @@ jobs:
           printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann, 4321 and abc-def
           
           # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
-          echo "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
-          cat $GITHUB_ENV
+          printf "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
+          printf "GITHUB_ENV: \n$(cat $GITHUB_ENV)"
           
   variables_in_step_scope:
     runs-on: ubuntu-latest
