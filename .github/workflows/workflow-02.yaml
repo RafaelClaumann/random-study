@@ -11,6 +11,12 @@ on:
       - ".github/workflows/workflow-02.yaml"
 
 jobs:
+  github_env_file_content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: using_variables
+        run: cat $GITHUB_ENV
+        
   variables_in_workflow_scope:
     runs-on: ubuntu-latest
     steps:
@@ -38,4 +44,3 @@ jobs:
         run: |
           printf "step env vars overrides workflow env vars values\n"
           printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # bernardes, 98765 and abc-def
-
