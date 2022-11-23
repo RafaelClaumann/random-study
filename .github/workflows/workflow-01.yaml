@@ -1,4 +1,4 @@
-name: workflow-01.yaml
+name: workflow-01
 
 on:
   push:
