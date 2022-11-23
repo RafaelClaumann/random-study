@@ -22,7 +22,7 @@ jobs:
       - name: STEP_check_if_secret_is_blank
         if: ${{ env.REPOSITORY_SECRET != '' }}
         run: |
-          printf "\nenv.REPOSITORY_SECRET is not blank!!"
+          printf "\nREPOSITORY_SECRET is not blank!!"
 
       - name: STEP_force_exit
         run: |
