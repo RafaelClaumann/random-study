@@ -28,7 +28,7 @@ jobs:
 
       - name: STEP_force_exit
         run: |
-          printf "force exit with code 1"
+          printf "\nthis step will force exit with code 1\n"
           exit 1
     
       - name: STEP_run_on_failure
