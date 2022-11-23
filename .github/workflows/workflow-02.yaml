@@ -35,6 +35,8 @@ jobs:
           printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann, 4321 and abc-def
           
           # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
+          # The step that creates or updates the environment variable does not have access to the new value, but all
+          # subsequent steps in a job will have access.
           echo "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
           echo "USE_IN_NEXT_STEP=using_env_var_defined_in_other_step" >> $GITHUB_ENV
           printf "GITHUB_ENV: $(cat $GITHUB_ENV)"
