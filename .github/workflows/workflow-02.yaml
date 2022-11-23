@@ -27,3 +27,4 @@ jobs:
         run: |
           printf "job env vars overrides workflow env vars values\n"
           printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann and 4321
+          echo env
