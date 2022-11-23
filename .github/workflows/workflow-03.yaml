@@ -11,10 +11,19 @@ on:
 
 jobs:
 
-  print_content_job:
+  read_repository_secret_job:
     runs-on: ubuntu-latest
     steps:
-    - name: STEP_print_folder_content
-      run: |
-        printf "\nGitHub will print the secret value as ***.\n"
-        printf "Trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
+      - name: STEP_read_right_repository_secret
+        run: |
+          printf "\nGitHub will print the secret value as ***.\n"
+          printf "Trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
+
+      - name: STEP_read_wrong_repository_secret
+        run: |
+          printf "Trying to print Secrets: ${{ secrets.RANDOM_NON_EXISTENT_SECRET }}\n"          
+    
+      - name: Step To run on failure
+        if: ${{ failure() }}
+        run: |
+          echo "fail!"
