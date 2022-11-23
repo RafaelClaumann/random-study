@@ -41,7 +41,7 @@ jobs:
       - name: using_variables_from_other_step
         run: |
           printf "{ $USE_IN_NEXT_JOB }\n" # file system is shared between Steps
-          printf "GITHUB_ENV: $(cat $GITHUB_ENV)"
+          printf "GITHUB_ENV: $(cat $GITHUB_ENV)" # empty? oxi
           
   variables_in_step_scope:
     runs-on: ubuntu-latest
