@@ -3,6 +3,7 @@ name: using-variables-workflow
 env:
   USER_NAME: "rafael"
   USER_PASSWORD: "1234"
+  USER_ID: "abc-def"
 
 on:
   push:
@@ -14,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: using_variables
-        run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
+        run: printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n"
 
   variables_in_job_level:
     runs-on: ubuntu-latest
@@ -24,6 +25,5 @@ jobs:
     steps:
       - name: using_variables
         run: |
-          printf "env vars created on jobs with same name as workflow env vars will
-          override workflow env vars values.\n"
-          printf "{ $USER_NAME } and { $USER_PASSWORD }\n" # claumann and 4321
+          printf "job env vars overrides workflow env vars values\n"
+          printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann and 4321
