@@ -36,6 +36,7 @@ jobs:
           
           # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
           echo "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
+          cat $GITHUB_ENV
           
   variables_in_step_scope:
     runs-on: ubuntu-latest
