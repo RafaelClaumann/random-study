@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: listing_variables
-        run: echo $GITHUB_ENV
+        run: cat $GITHUB_ENV
         
   variables_in_workflow_scope:
     runs-on: ubuntu-latest
