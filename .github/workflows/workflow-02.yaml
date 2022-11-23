@@ -44,10 +44,8 @@ jobs:
       - name: using_variables_from_other_step
         run: |
           printf "{ $USE_IN_NEXT_STEP }\n" # using_env_var_defined_in_other_step | file system is shared between Steps
-          echo ${{ env.USE_IN_NEXT_JOB }}
-          echo ${{ env.USE_IN_NEXT_STEP }}
-          echo $USE_IN_NEXT_JOB
-          echo $USE_IN_NEXT_STEP
+          printf "USE_IN_NEXT_JOB: ${{ env.USE_IN_NEXT_JOB }}"
+          printf "USE_IN_NEXT_STEP: ${{ env.USE_IN_NEXT_STEP }}"
           printf "GITHUB_ENV: $(cat $GITHUB_ENV)" # empty? what?          
           
   variables_in_step_scope:
