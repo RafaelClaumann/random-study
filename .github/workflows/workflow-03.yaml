@@ -22,7 +22,7 @@ jobs:
       - name: STEP_check_if_secret_is_blank
         env:
           SECRET_VALUE: ${{ env.REPOSITORY_SECRET }}
-        if: ${{ env.SECRET_VALUE != "" }}
+        if: ${{ env.SECRET_VALUE != '' }}
         run: |
           printf "\nREPOSITORY_SECRET is not blank!!"
 
