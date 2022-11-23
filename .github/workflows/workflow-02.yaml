@@ -26,5 +26,16 @@ jobs:
       - name: using_variables
         run: |
           printf "job env vars overrides workflow env vars values\n"
-          printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann and 4321
-          env
+          printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann, 4321 and abc-def
+          
+  variables_in_step_level:
+    runs-on: ubuntu-latest
+    steps:
+      - name: using_variables
+        env:
+          USER_NAME: "bernardes"
+          USER_PASSWORD: "98765"
+        run: |
+          printf "step env vars overrides workflow env vars values\n"
+          printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # bernardes, 98765 and abc-def
+
