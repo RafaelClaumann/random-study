@@ -10,8 +10,8 @@ on:
       - ".github/workflows/workflow-02.yaml"
 
 jobs:
-  job_01:
+  variables_in_workflow_level:
     runs-on: ubuntu-latest
     steps:
-      - name: using_workflow_level_variables
+      - name: using_variables
         run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
