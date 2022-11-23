@@ -37,6 +37,8 @@ jobs:
           # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
           printf "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
           printf "USE_IN_NEXT_STEP=using_env_var_defined_in_other_step" >> $GITHUB_ENV
+          echo ${{ env.USE_IN_NEXT_JOB }}
+          echo ${{ env.USE_IN_NEXT_STEP }}          
           printf "GITHUB_ENV: $(cat $GITHUB_ENV)"
       
       - name: using_variables_from_other_step
