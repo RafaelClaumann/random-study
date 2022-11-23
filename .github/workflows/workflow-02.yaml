@@ -37,16 +37,16 @@ jobs:
           # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
           echo "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
           echo "USE_IN_NEXT_STEP=using_env_var_defined_in_other_step" >> $GITHUB_ENV
-          echo ${{ env.USE_IN_NEXT_JOB }}
-          echo ${{ env.USE_IN_NEXT_STEP }}
-          echo $USE_IN_NEXT_JOB
-          echo $USE_IN_NEXT_STEP
           printf "GITHUB_ENV: $(cat $GITHUB_ENV)"
       
       - name: using_variables_from_other_step
         run: |
           printf "{ $USE_IN_NEXT_STEP }\n" # using_env_var_defined_in_other_step | file system is shared between Steps
-          printf "GITHUB_ENV: $(cat $GITHUB_ENV)" # empty? what?
+          echo ${{ env.USE_IN_NEXT_JOB }}
+          echo ${{ env.USE_IN_NEXT_STEP }}
+          echo $USE_IN_NEXT_JOB
+          echo $USE_IN_NEXT_STEP
+          printf "GITHUB_ENV: $(cat $GITHUB_ENV)" # empty? what?          
           
   variables_in_step_scope:
     runs-on: ubuntu-latest
