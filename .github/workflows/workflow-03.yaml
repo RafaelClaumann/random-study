@@ -19,11 +19,18 @@ jobs:
           printf "\nGitHub will print the secret value as ***.\n"
           printf "Trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
 
-      - name: STEP_read_wrong_repository_secret
+      - name: STEP_check_if_secret_is_blank
+        if: "${{ env.REPOSITORY_SECRET != '' }}"
         run: |
-          printf "Trying to print Secrets: ${{ secrets.RANDOM_NON_EXISTENT_SECRET }}\n"          
+          printf "\nenv.REPOSITORY_SECRET is not blank!!"
+
+      - name: STEP_force_exit
+        run: |
+          printf "force exit with code 1"
+          exit 1
     
-      - name: Step To run on failure
+      - name: STEP_run_on_failure
         if: ${{ failure() }}
         run: |
-          echo "fail!"
+          # will not detect a read in a non existing secret
+          printf "fail!\n"
