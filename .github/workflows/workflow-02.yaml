@@ -1,8 +1,8 @@
 name: using-variables-workflow
 
-emv:
-  USER_NAME="rafael"
-  USER_PASSWORD="1234"
+env:
+  USER_NAME: "rafael"
+  USER_PASSWORD: "1234"
 
 on:
   push:
@@ -10,9 +10,8 @@ on:
       - ".github/workflows/workflow-02.yaml"
 
 jobs:
-  VariableUsageJob:
-  runs-on: ubuntu-latest
-  steps:
-  - name: Using Workflow Variables
-    run: |
-      printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
+  using_workflow_level_variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Using Workflow Variables
+        run: printf "{ $USER_NAME } and { $USER_PASSWORD }\n"
