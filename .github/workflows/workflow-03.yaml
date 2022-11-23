@@ -20,7 +20,9 @@ jobs:
           printf "Trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
 
       - name: STEP_check_if_secret_is_blank
-        if: ${{ env.REPOSITORY_SECRET != '' }}
+        env:
+          SECRET_VALUE: ${{ env.REPOSITORY_SECRET }}
+        if: ${{ env.SECRET_VALUE != "" }}
         run: |
           printf "\nREPOSITORY_SECRET is not blank!!"
 
