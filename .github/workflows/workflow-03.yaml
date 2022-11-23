@@ -1,0 +1,19 @@
+name: workflow-03
+
+on:
+  push:
+    paths: 
+      - ".github/workflows/workflow-03.yaml"
+#    branches:
+#      - "github-workflows"      
+#    paths-ignore:
+#      - "README.md"
+
+jobs:
+
+  print_content_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: STEP_print_folder_content
+      run: |
+        echo ${{ secrets.AppCenterAPIToken }}
