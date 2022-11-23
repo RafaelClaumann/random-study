@@ -16,5 +16,5 @@ jobs:
     steps:
     - name: STEP_print_folder_content
       run: |
-        printf "\nGitHub will print the secret value as ***."
-        printf "trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
+        printf "\nGitHub will print the secret value as ***.\n"
+        printf "Trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
