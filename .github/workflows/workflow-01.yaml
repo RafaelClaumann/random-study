@@ -2,10 +2,10 @@ name: workflow-01
 
 on:
   push:
-#    paths: 
-#      - "workflow-01.yaml"
-    branches:
-      - "github-workflows"      
+    paths: 
+      - "**workflow-01.yaml"
+#    branches:
+#      - "github-workflows"      
 #    paths-ignore:
 #      - "README.md"
 
