@@ -44,7 +44,7 @@ jobs:
           --file pom.xml
 
           cd target
-          printf "current_dir: $PWD\n"
+          printf "\ncurrent_dir: $PWD\n"
           ls -l
 
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
