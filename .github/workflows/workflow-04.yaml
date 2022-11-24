@@ -16,6 +16,11 @@ jobs:
           ref: main
       - name: Android
         run: |
+          echo
           echo $PWD
+          ls -l
+          echo
+
           cd random-study
           ls -l
+          echo
