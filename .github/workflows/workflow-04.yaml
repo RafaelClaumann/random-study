@@ -33,7 +33,7 @@ jobs:
           printf "$(java -version)\n"
           printf "$(mvn -version)\n"
 
-          printf "current_dir: $PWD\n"
+          printf "\ncurrent_dir: $PWD\n"
           cd java/hello-world-v1/
           printf "current_dir: $PWD\n"
 
