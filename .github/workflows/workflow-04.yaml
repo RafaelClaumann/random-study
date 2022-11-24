@@ -46,6 +46,11 @@ jobs:
           cd target
           printf "current_dir: $PWD\n"
           ls -l
+          mv *.jar ../artifact.jar
+
+          cd ..
+          printf "current_dir: $PWD\n"          
+          ls -l
 
       - name: upload_artifact
         uses: actions/upload-artifact@v3
