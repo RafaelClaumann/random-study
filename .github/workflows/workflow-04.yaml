@@ -46,11 +46,6 @@ jobs:
           cd target
           printf "current_dir: $PWD\n"
           ls -l
-          mv *.jar artifact.jar
-
-          cd ..
-          printf "current_dir: $PWD\n"          
-          ls -l
 
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
@@ -60,5 +55,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name:  hello-world-v1-artifact
-          path: "~/**/artifact.jar"
+          path: "~/**/*.jar"
           if-no-files-found: error
