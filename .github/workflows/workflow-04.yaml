@@ -10,10 +10,13 @@ jobs:
   Android:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: checkout_main_branch
         uses: actions/checkout@v3
         with:
           ref: main
+        run: |
+          ls -l
+
       - name: Android
         run: |
           printf "\n$PWD\n"
