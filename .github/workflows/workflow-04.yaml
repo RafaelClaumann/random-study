@@ -46,3 +46,9 @@ jobs:
           cd target
           printf "current_dir: $PWD\n"
           ls -l
+
+      - name: upload_artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name:  hello-world-v1-1.0-SNAPSHOT
+          path: "/java/hello-world-v1/target/hello-world-v1-1.0-SNAPSHOT.jar"
