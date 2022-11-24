@@ -17,13 +17,16 @@ jobs:
 
       - name: list_checkout_files
         run: |
-          ls -R -l
+          printf "\nCURRENT_DIR: $PWD\n"
+          ls -l
 
           cd java
-          ls -R -l
+          printf "\nCURRENT_DIR: $PWD\n"          
+          ls -l
         
           cd hello-world-v1
-          ls -R -l
+          printf "\nCURRENT_DIR: $PWD\n"
+          ls -l
 
       - name: build_artifact
         run: |
@@ -42,7 +45,7 @@ jobs:
 
           cd target
           printf "\ncurrent_dir: $PWD\n"
-          ls -R -l
+          ls -l
 
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
