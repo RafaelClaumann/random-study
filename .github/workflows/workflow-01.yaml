@@ -60,4 +60,4 @@ jobs:
           --quiet \
           --file pom.xml
           
-          mvn exec:java --quiet
+          mvn exec:java
