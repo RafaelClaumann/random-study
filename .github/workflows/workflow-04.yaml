@@ -43,6 +43,7 @@ jobs:
           --quiet \
           --file pom.xml
 
+          printf "current_dir: $PWD\n"
           cd target
           printf "current_dir: $PWD\n"
           ls -l  
