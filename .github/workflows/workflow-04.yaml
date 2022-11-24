@@ -52,3 +52,4 @@ jobs:
         with:
           name:  hello-world-v1-1.0-SNAPSHOT
           path: "/java/hello-world-v1/target/hello-world-v1-1.0-SNAPSHOT.jar"
+          if-no-files-found: error
