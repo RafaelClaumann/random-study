@@ -30,9 +30,9 @@ jobs:
 
       - name: build_artifact
         run: |
-          printf "$(java -version)\n"
-          printf ""
-          printf "$(mvn -version)\n"
+          printf "\njava_version: $(java -version)\n"
+          
+          printf "\nmaven_version: $(mvn -version)\n"
 
           printf "current_dir: $PWD\n"
           cd java/hello-world-v1/
