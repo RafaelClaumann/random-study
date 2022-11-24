@@ -39,7 +39,7 @@ jobs:
           which mvn
 
           printf "\n$PWD\n"
-          cd /java/hello-world-v1
+          cd java/hello-world-v1/
           printf "\n$PWD\n"
 
           mvn clean install \
