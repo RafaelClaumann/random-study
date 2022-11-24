@@ -54,10 +54,11 @@ jobs:
 
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "HOME: $HOME"
 
       - name: upload_artifact
         uses: actions/upload-artifact@v3
         with:
           name:  hello-world-v1-artifact
-          path: "${{ github.GITHUB_WORKSPACE }}/**/artifact.jar"
+          path: "~/**/artifact.jar"
           if-no-files-found: error
