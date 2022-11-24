@@ -16,11 +16,13 @@ jobs:
           ref: main
       - name: Android
         run: |
-          echo
-          echo $PWD
+          printf "\n$PWD\n"
           ls -l
-          echo
 
-          cd random-study
+          cd java
+          printf "\n$PWD\n"          
           ls -l
-          echo
+        
+          cd hello-world-v1
+          printf "\n$PWD\n"
+          ls -l
