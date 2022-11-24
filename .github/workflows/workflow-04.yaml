@@ -15,7 +15,7 @@ jobs:
         with:
           ref: main
 
-      - name: Android
+      - name: list_checkout_files
         run: |
           printf "\n$PWD\n"
           ls -l
@@ -27,3 +27,6 @@ jobs:
           cd hello-world-v1
           printf "\n$PWD\n"
           ls -l
+
+          java -version
+          which java
