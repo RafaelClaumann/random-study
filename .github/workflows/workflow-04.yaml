@@ -36,6 +36,7 @@ jobs:
           printf "\ncurrent_dir: $PWD\n"
           cd java/hello-world-v1/
           printf "current_dir: $PWD\n"
+          ls ".github/workflows/workflow-04.yaml"
 
           printf "building java artifact!\n"
           mvn clean install \
@@ -43,7 +44,22 @@ jobs:
           --quiet \
           --file pom.xml
 
-          printf "current_dir: $PWD\n"
-          cd target
-          printf "current_dir: $PWD\n"
-          ls -l  
+      - name: upload_artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: hello-world-v1-artifact
+          path: "."
+
+  AppCenterDistibuteDroid:
+      runs-on: ubuntu-latest
+      needs: Android
+      steps:
+        - name: download_artifact
+          uses: actions/download-artifact@v3
+          with:
+            name: hello-world-v1-artifact
+
+        - name: list_checkout_files
+          run: |
+            printf "\n$PWD\n"
+            ls -l                
