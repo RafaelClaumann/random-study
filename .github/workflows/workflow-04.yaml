@@ -33,7 +33,7 @@ jobs:
           printf "$(java -version)\n"
           printf "$(mvn -version)\n"
 
-          tree -d
+          tree -d -L 1
 
 
           printf "\ncurrent_dir: $PWD\n"
