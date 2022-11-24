@@ -28,5 +28,10 @@ jobs:
           printf "\n$PWD\n"
           ls -l
 
+          printf "\njava:\n"
           java -version
           which java
+
+          printf "\nmaven:\n"
+          mvn -version
+          which mvn
