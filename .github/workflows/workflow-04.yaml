@@ -37,9 +37,12 @@ jobs:
           cd java/hello-world-v1/
           printf "current_dir: $PWD\n"
 
+          printf "building java artifact"
           mvn clean install \
           --threads 2C \
           --quiet \
           --file pom.xml
 
-          mvn exec:java --quiet           
+          ls -l
+          cd target
+          ls -l        
