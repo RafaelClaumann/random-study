@@ -54,6 +54,6 @@ jobs:
       - name: upload_artifact
         uses: actions/upload-artifact@v3
         with:
-          name:  hello-world-v1-artifact
+          name: hello-world-v1-artifact
           path: "~/**/hello-world-v1/target/*.jar"
           if-no-files-found: error
