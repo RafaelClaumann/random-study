@@ -1,0 +1,21 @@
+name: sharing-artifacts
+
+on:
+  push:
+    paths: 
+      - ".github/workflows/workflow-04.yaml"
+
+jobs:
+
+  Android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Android
+        run: |
+          echo $PWD
+          cd random-study
+          ls -l
