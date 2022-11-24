@@ -37,21 +37,21 @@ jobs:
 
       - name: STEP_list_files
         run: |
-          printf "listing files from { $PWD }"
+          printf "listing files from { $PWD }\n"
           ls
           
           cd java/
-          printf "\nlisting files from { $PWD }"
+          printf "\nlisting files from { $PWD }\n"
           ls
           
           cd hello-world-v1/
-          printf "\nlisting files from { $PWD }"
+          printf "\nlisting files from { $PWD }\n"
           ls
           
       - name: STEP_mvn_exec_java
         run: |
           cd java/hello-world-v1/
-          printf "listing files from { $PWD }"
+          printf "listing files from { $PWD }\n"
           ls
           echo
           
