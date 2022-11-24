@@ -56,6 +56,7 @@ jobs:
           echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
           echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
           echo "GITHUB_PATH: $GITHUB_PATH"
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
 
       - name: upload_artifact
         uses: actions/upload-artifact@v3
