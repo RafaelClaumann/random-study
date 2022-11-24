@@ -31,11 +31,11 @@ jobs:
       - name: build_artifact
         run: |
           printf "$(java -version)\n"
-          printf "\n$(mvn -version)"
+          printf "$(mvn -version)\n"
 
-          printf "\ncurrent_dir: $PWD"
+          printf "current_dir: $PWD\n"
           cd java/hello-world-v1/
-          printf "\ncurrent_dir: $PWD\n"
+          printf "current_dir: $PWD\n"
 
           mvn clean install \
           --threads 2C \
