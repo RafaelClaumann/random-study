@@ -38,7 +38,7 @@ jobs:
           mvn -version
           which mvn
 
-          printf "\ncurrent_dir: $PWD\n"
+          printf "\ncurrent_dir: $PWD"
           cd java/hello-world-v1/
           printf "\ncurrent_dir: $PWD\n"
 
