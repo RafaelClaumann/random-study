@@ -38,4 +38,12 @@ jobs:
           mvn -version
           which mvn
 
-          ls -l
+          cd /java/hello-world-v1
+          printf "\n$PWD\n"
+
+          mvn clean install \
+          --threads 2C \
+          --quiet \
+          --file pom.xml
+
+          mvn exec:java                
