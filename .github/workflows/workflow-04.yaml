@@ -52,6 +52,13 @@ jobs:
           printf "current_dir: $PWD\n"          
           ls -l
 
+          prinf "\n\n\n"
+
+          echo $GITHUB_ACTION_REPOSITORY
+          echo $GITHUB_BASE_REF
+          echo $GITHUB_EVENT_PATH
+          echo $GITHUB_PATH
+
       - name: upload_artifact
         uses: actions/upload-artifact@v3
         with:
