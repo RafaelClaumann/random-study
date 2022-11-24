@@ -17,16 +17,13 @@ jobs:
 
       - name: list_checkout_files
         run: |
-          printf "\nCURRENT_DIR: $PWD\n"
-          ls -l
+          ls -R -l
 
           cd java
-          printf "\nCURRENT_DIR: $PWD\n"          
-          ls -l
+          ls -R -l
         
           cd hello-world-v1
-          printf "\nCURRENT_DIR: $PWD\n"
-          ls -l
+          ls -R -l
 
       - name: build_artifact
         run: |
@@ -45,7 +42,7 @@ jobs:
 
           cd target
           printf "\ncurrent_dir: $PWD\n"
-          ls -l
+          ls -R -l
 
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
@@ -57,3 +54,4 @@ jobs:
           name: hello-world-v1-artifact
           path: "~/**/hello-world-v1/target/*.jar"
           if-no-files-found: error
+        
