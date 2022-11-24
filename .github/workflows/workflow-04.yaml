@@ -46,7 +46,7 @@ jobs:
           cd target
           printf "current_dir: $PWD\n"
           ls -l
-          mv *.jar ../artifact.jar
+          mv *.jar artifact.jar
 
           cd ..
           printf "current_dir: $PWD\n"          
