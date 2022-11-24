@@ -34,11 +34,8 @@ jobs:
           printf "$(mvn -version)\n"
 
           tree -d -L 1
-
-
-          printf "\ncurrent_dir: $PWD\n"
           cd java/hello-world-v1/
-          printf "current_dir: $PWD\n"
+          tree -d -L 1          
 
           printf "building java artifact!\n"
           mvn clean install \
