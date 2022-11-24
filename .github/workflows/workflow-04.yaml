@@ -28,6 +28,8 @@ jobs:
           printf "\n$PWD\n"
           ls -l
 
+      - name: build_artifact
+        run: |
           printf "\njava:\n"
           java -version
           which java
@@ -35,3 +37,5 @@ jobs:
           printf "\nmaven:\n"
           mvn -version
           which mvn
+
+          ls -l
