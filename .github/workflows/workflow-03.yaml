@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  read_repository_secret_job:
+  JOB_read_repository_secret:
     runs-on: ubuntu-latest
     steps:
       - name: STEP_read_right_repository_secret
