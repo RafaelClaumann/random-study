@@ -38,6 +38,7 @@ jobs:
           mvn -version
           which mvn
 
+          printf "\n$PWD\n"
           cd /java/hello-world-v1
           printf "\n$PWD\n"
 
