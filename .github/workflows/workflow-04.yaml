@@ -74,6 +74,7 @@ jobs:
           ls -l
 
           java -jar artifact.jar
+          mvn exec:java
     
   AppCenterDistibuteDroids:
     runs-on: ubuntu-latest
