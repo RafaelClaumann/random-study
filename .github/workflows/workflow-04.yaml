@@ -52,6 +52,7 @@ jobs:
           cp *.jar ../../../../artifact.jar
           cd ../../../../
           ls -l
+          echo $PWD
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           echo "HOME: $HOME"
