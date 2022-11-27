@@ -29,7 +29,6 @@ jobs:
           cd github-workflows/
           npm init -y
           npm install redis
-          ls -l
           npm ci
 
       - name: Connect to Redis
@@ -37,6 +36,6 @@ jobs:
           REDIS_HOST: redis
           REDIS_PORT: 6379      
         run: |
+          ip -c -br a
           cd github-workflows/
-          ls -l
           node redisclient.js
