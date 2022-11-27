@@ -1,4 +1,6 @@
-on: 
+name: ContainerJobAndService
+
+on:
   - workflow_dispatch
 
 jobs:
