@@ -47,7 +47,11 @@ jobs:
           printf "\ncurrent_dir: $PWD\n"
           ls -l
 
+          echo
+
           cp *.jar ../../artifact.jar
+          cd ../../
+          ls -l
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           echo "HOME: $HOME"
