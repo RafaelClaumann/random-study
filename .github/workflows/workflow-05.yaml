@@ -15,7 +15,7 @@ jobs:
         testjob: here is value
 
     steps:
-    - name: checkot_${{ env.GITHUB_REPOSITORY }}
+    - name: checkot_${{ github.repository }}
       uses: actions/checkout@main
       with:
         ref: main
