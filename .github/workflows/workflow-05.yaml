@@ -6,39 +6,28 @@ on:
       - ".github/workflows/workflow-05.yaml"
 
 jobs:  
-  container:
+  job_on_container:
     runs-on: ubuntu-latest
     container:
       image: alpine:latest
       env: 
         actor: ${{ github.actor }}
-        testjob: here is value
 
     steps:
-    - name: checkot_${{ github.repository }}
-      uses: actions/checkout@main
-      with:
-        ref: main
-    - name: run ls
-      run: |
-        ls
-        cat /etc/os-release
+      - name: checkot_main_branch
+        uses: actions/checkout@main
+        with:
+          ref: main
 
-    - name: print actor env var
-      run: echo "$actor"
+      - name: describe_os_version
+        run: |
+          cat /etc/os-release
 
-    - name: print directly github context
-      run: echo "${{ github.actor }}"
+      - name: print_some_context_vars
+        run: |
+          echo "$actor"                 # actor from job env var
+          echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
 
-    - name: print repo secret
-      run: echo "${{ secrets.TEST_SECRET }}"
-
-    - name: print job env var
-      run: echo "$testjob"
-
-    - name: print root env var
-      run: echo "$test"
-
-    - name: condition with root env var
-      if: ${{ env.test == 'value' }}
-      run: echo "$test"
+      - name: check_condition
+        if: ${{ env.actor == 'RafaelClaumann' }}
+        run: echo "OK!"
