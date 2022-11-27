@@ -19,9 +19,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@main
+      with:
+        ref: main
     - name: run ls
       run: ls
-    # all these below work
+
     - name: print actor env var
       run: echo "$actor"
     - name: print directly github context
