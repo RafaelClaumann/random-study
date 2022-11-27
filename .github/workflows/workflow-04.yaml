@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hello-world-v1-artifact
-          path: "~/**/hello-world-v1/target/*.jar"
+          path: "~/**/**/**/*.jar"
           if-no-files-found: error
         
   AppCenterDistibuteDroid:
