@@ -11,7 +11,7 @@ jobs:
     container:
       image: alpine:latest
       env: 
-        actor: ${{ github.actor }}
+        ACTOR_ENV: ${{ github.actor }}
 
     steps:
       - name: checkot_main_branch
@@ -19,15 +19,15 @@ jobs:
         with:
           ref: main
 
-      - name: describe_os_version
+      - name: describe_container_os_version
         run: |
           cat /etc/os-release
 
       - name: print_some_context_vars
         run: |
-          echo "$actor"                 # actor from job env var
+          echo "$ACTOR_ENV"             # actor from job env var
           echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
 
       - name: check_condition
-        if: ${{ env.actor == 'RafaelClaumann' }}
+        if: ${{ env.ACTOR_ENV == 'RafaelClaumann' }}
         run: echo "OK!"
