@@ -5,9 +5,6 @@ on:
     paths: 
       - ".github/workflows/workflow-05.yaml"
 
-env:
-  test: value
-
 jobs:  
   container:
     runs-on: ubuntu-latest
@@ -18,14 +15,14 @@ jobs:
         testjob: here is value
 
     steps:
-    - uses: actions/checkout@main
+    - name: ${{ github.actor }}
+      uses: actions/checkout@main
       with:
         ref: main
     - name: run ls
       run: |
         ls
         cat /etc/os-release
-        echo "Adding some Markdown content" >> $GITHUB_STEP_SUMMARY
 
     - name: print actor env var
       run: echo "$actor"
