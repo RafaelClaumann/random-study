@@ -49,7 +49,7 @@ jobs:
 
           echo
 
-          cp *.jar ../../artifact.jar
+          cp *.jar ../../../../artifact.jar
           cd ../../
           ls -l
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
