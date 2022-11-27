@@ -27,8 +27,6 @@ jobs:
       - name: Install dependencies
         run: |
           cd github-workflows/
-          npm init -y
-          npm install redis
           npm ci
 
       - name: Connect to Redis
