@@ -25,6 +25,8 @@ jobs:
       - name: describe_container_os_version
         run: |
           cat /etc/os-release
+          echo
+          env
 
       - name: print_some_context_vars
         run: |
