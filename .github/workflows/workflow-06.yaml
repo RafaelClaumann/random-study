@@ -33,6 +33,8 @@ jobs:
           cd github-workflows/
           echo $PWD
           ls -l
+          npm init -y
+          npm install redis
           npm ci
 
       - name: Connect to Redis
