@@ -29,10 +29,3 @@ jobs:
         run: |
           echo "$ACTOR_ENV"             # actor from job env var
           echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
-
-      - name: check_condition
-        if: "${{ env.ACTOR_ENV != \"RafaelClaumannz\" }}"
-        run: |
-          echo "$ACTOR_ENV"             # actor from job env var
-          echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
-          echo "OK!"
