@@ -24,7 +24,7 @@ jobs:
     - name: run ls
       run: |
         ls
-        cat /etc/lsb-release
+        cat /etc/os-release
 
     - name: print actor env var
       run: echo "$actor"
