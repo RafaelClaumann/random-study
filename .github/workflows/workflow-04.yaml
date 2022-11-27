@@ -70,21 +70,7 @@ jobs:
 
       - name: list_files_after_download
         run: |
-          tree
-
-          echo
-
           printf "\nCURRENT_DIR: $PWD\n"
-          ls -l
-          echo
-
-          cd work/
-          printf "\nCURRENT_DIR: $PWD\n"
-          ls -l
-          echo
-
-          cd random-study/
-          printf "\nCURRENT_DIR: $PWD\n"          
           ls -l
        
       - uses: geekyeggo/delete-artifact@v2
