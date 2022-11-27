@@ -1,4 +1,4 @@
-name: Container Job
+name: RunningContainerJob
 
 on:
   push:
@@ -12,8 +12,7 @@ jobs:
   container:
     runs-on: ubuntu-latest
     container:
-      # image: 'ubuntu:20.04' # can also use this to test
-      image: 'ghcr.io/${{ github.repository }}:latest'
+      image: alpine:latest
       credentials:
          username: ${{ github.ref }}
          password: ${{ secrets.GITHUB_TOKEN }}
