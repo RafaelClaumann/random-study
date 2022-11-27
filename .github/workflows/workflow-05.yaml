@@ -25,6 +25,7 @@ jobs:
       run: |
         ls
         cat /etc/os-release
+        echo "Adding some Markdown content" >> $GITHUB_STEP_SUMMARY
 
     - name: print actor env var
       run: echo "$actor"
