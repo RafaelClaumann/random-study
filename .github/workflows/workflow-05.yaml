@@ -5,9 +5,6 @@ on:
     paths: 
       - ".github/workflows/workflow-05.yaml"
 
-env:
-  ACTOR_ENV: teste
-
 jobs:  
   job_on_container:
     runs-on: ubuntu-latest
