@@ -72,7 +72,11 @@ jobs:
         run: |
           printf "\nCURRENT_DIR: $PWD\n"
           ls -l
-       
+    
+  AppCenterDistibuteDroids:
+    runs-on: ubuntu-latest
+    needs: AppCenterDistibuteDroid
+    steps:
       - uses: geekyeggo/delete-artifact@v2
         with:
             name: hello-world-v1-artifact
