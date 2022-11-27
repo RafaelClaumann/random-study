@@ -31,14 +31,16 @@ jobs:
       - name: Install dependencies
         run: |
           cd github-workflows/
-          echo $PWD
-          ls -l
           npm init -y
           npm install redis
+          ls -l
           npm ci
 
       - name: Connect to Redis
-        run: node redisclient.js
+        run: |
+          echo $PWD
+          ls -l
+          node redisclient.js
         env:
           REDIS_HOST: redis
           REDIS_PORT: 6379
