@@ -5,6 +5,9 @@ on:
     paths: 
       - ".github/workflows/workflow-05.yaml"
 
+env:
+  ACTOR_ENV: teste
+
 jobs:  
   job_on_container:
     runs-on: ubuntu-latest
@@ -29,5 +32,5 @@ jobs:
           echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
 
       - name: check_condition
-        if: ${{ $ACTOR_ENV == 'RafaelClaumann' }}
+        if: ${{ env.ACTOR_ENV == 'teste' }}
         run: echo "OK!"
