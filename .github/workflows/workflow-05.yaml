@@ -11,7 +11,7 @@ jobs:
     container:
       image: alpine:latest
       env: 
-        ACTOR_ENV: ${{ github.actor }}
+        ACTOR_ENV: '${{ github.actor }}'
 
     steps:
       - name: checkot_main_branch
@@ -31,7 +31,7 @@ jobs:
           echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
 
       - name: check_condition
-        if: ${{ env.ACTOR_ENV != RafaelClaumann }}
+        if: ${{ env.ACTOR_ENV != 'RafaelClaumann' }}
         run: |
           echo "$ACTOR_ENV"             # actor from job env var
           echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
