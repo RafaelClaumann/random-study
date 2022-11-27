@@ -1,7 +1,9 @@
 name: ContainerJobAndService
 
 on:
-  - workflow_dispatch
+  push:
+    paths: 
+      - ".github/workflows/workflow-06.yaml"
 
 jobs:
   container-job:
