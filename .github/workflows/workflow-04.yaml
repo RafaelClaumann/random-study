@@ -68,7 +68,7 @@ jobs:
         with:
           name: hello-world-v1-artifact
 
-      - name: list_files_after_download
+      - name: run_artifact
         run: |
           printf "\nCURRENT_DIR: $PWD\n"
           ls -l
