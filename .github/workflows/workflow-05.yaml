@@ -13,9 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: alpine:latest
-      credentials:
-         username: ${{ github.ref }}
-         password: ${{ secrets.GITHUB_TOKEN }}
       env: 
         actor: ${{ github.actor }}
         testjob: here is value
