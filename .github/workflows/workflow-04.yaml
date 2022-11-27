@@ -69,4 +69,9 @@ jobs:
 
       - name: list_files_after_download
         run: |
+          printf "\nCURRENT_DIR: $PWD\n"
+          ls -l
+
+          cd work
+          printf "\nCURRENT_DIR: $PWD\n"          
           ls -l
