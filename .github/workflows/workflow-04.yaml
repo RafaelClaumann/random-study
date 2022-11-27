@@ -50,7 +50,7 @@ jobs:
           echo
 
           cp *.jar ../../../../artifact.jar
-          cd ../../
+          cd ../../../../
           ls -l
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
