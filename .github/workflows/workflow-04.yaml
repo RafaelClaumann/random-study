@@ -49,8 +49,8 @@ jobs:
 
           echo
 
-          cp *.jar ../../../../artifact.jar
-          cd ../../../../
+          cp *.jar ~/artifact.jar
+          cd ~/
           ls -l
           echo $PWD
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
