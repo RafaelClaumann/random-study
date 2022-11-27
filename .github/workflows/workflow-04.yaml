@@ -71,7 +71,13 @@ jobs:
         run: |
           printf "\nCURRENT_DIR: $PWD\n"
           ls -l
+          printf "\n"
 
-          cd work
-          printf "\nCURRENT_DIR: $PWD\n"          
+          cd work/
+          printf "\nCURRENT_DIR: $PWD\n"
           ls -l
+          printf "\n"
+
+          cd random-study/
+          printf "\nCURRENT_DIR: $PWD\n"          
+          ls -l          
