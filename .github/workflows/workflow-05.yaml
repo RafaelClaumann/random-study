@@ -1,0 +1,41 @@
+name: Container Job
+
+on:
+  push:
+    branches:
+      main
+
+env:
+  test: value
+
+jobs:  
+  container:
+    runs-on: ubuntu-latest
+    container:
+      # image: 'ubuntu:20.04' # can also use this to test
+      image: 'ghcr.io/${{ github.repository }}:latest'
+      credentials:
+         username: ${{ github.ref }}
+         password: ${{ secrets.GITHUB_TOKEN }}
+      env: 
+        actor: ${{ github.actor }}
+        testjob: here is value
+
+    steps:
+    - uses: actions/checkout@main
+    - name: run ls
+      run: ls
+    # all these below work
+    - name: print actor env var
+      run: echo "$actor"
+    - name: print directly github context
+      run: echo "${{ github.actor }}"
+    - name: print repo secret
+      run: echo "${{ secrets.TEST_SECRET }}"
+    - name: print job env var
+      run: echo "$testjob"
+    - name: print root env var
+      run: echo "$test"
+    - name: condition with root env var
+      if: ${{ env.test == 'value' }}
+      run: echo "$test"
