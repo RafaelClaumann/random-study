@@ -38,8 +38,7 @@ jobs:
 
       - name: Connect to Redis
         run: |
-          echo $PWD
-          ls -l
+          cd github-workflows/
           node redisclient.js
         env:
           REDIS_HOST: redis
