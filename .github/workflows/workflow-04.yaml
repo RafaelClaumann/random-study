@@ -69,6 +69,10 @@ jobs:
 
       - name: list_files_after_download
         run: |
+          tree
+
+          echo
+
           printf "\nCURRENT_DIR: $PWD\n"
           ls -l
           echo
@@ -85,5 +89,5 @@ jobs:
           echo
 
           cd random-study/
-          printf "\nCURRENT_DIR: $PWD\n"          
+          printf "\nCURRENT_DIR: $PWD\n"       
           ls -l                
