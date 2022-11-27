@@ -30,6 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd github-workflows/
           echo $PWD
           ls -l
           npm ci
