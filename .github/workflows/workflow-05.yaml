@@ -29,5 +29,5 @@ jobs:
           echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
 
       - name: check_condition
-        if: ${{ env.ACTOR_ENV == 'RafaelClaumann' }}
+        if: ${{ $ACTOR_ENV == 'RafaelClaumann' }}
         run: echo "OK!"
