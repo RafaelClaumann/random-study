@@ -86,12 +86,6 @@ jobs:
           cd random-study/
           printf "\nCURRENT_DIR: $PWD\n"          
           ls -l
-
-          echo
-
-          cd random-study/
-          printf "\nCURRENT_DIR: $PWD\n"       
-          ls -l
        
       - uses: geekyeggo/delete-artifact@v2
         with:
