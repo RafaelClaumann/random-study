@@ -1,4 +1,4 @@
-import { createClient } from 'redis';
+import 'redis';
 
 const client = createClient();
 
