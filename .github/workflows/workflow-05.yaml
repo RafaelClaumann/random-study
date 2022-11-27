@@ -22,18 +22,25 @@ jobs:
       with:
         ref: main
     - name: run ls
-      run: ls
+      run: |
+        ls
+        cat /etc/lsb-release
 
     - name: print actor env var
       run: echo "$actor"
+
     - name: print directly github context
       run: echo "${{ github.actor }}"
+
     - name: print repo secret
       run: echo "${{ secrets.TEST_SECRET }}"
+
     - name: print job env var
       run: echo "$testjob"
+
     - name: print root env var
       run: echo "$test"
+
     - name: condition with root env var
       if: ${{ env.test == 'value' }}
       run: echo "$test"
