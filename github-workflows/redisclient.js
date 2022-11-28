@@ -10,8 +10,25 @@ console.log("REDIS_PORT, ", process.env.REDIS_PORT);
 
 client.on('error', (err) => console.log('Redis Client Error', err));
 
-await client.connect();
+async function connect() {
+    await client.connect();
+}
 
-await client.set('key', 'value');
-const value = await client.get('key');
-await client.disconnect();
+async function setKey() {
+    await client.set('key', 'value');
+}
+
+let value = NaN;
+async function retrieveKey() {
+    value = await client.get('key');
+    console.log(value);
+}
+
+async function disconnect() {
+    await client.disconnect();
+}
+
+connect();
+setKey();
+retrieveKey();
+disconnect();
