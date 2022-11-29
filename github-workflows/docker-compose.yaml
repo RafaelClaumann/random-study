@@ -1,0 +1,51 @@
+#
+# docker-compose up -d
+# docker exec -it linux sh
+#   / # curl redis_cache:6379
+#     curl: (52) Empty reply from server
+#   / # curl http_echo:8080
+#     "Hello World"
+#   / # exit
+# docker-compose down
+#
+# docker network inspect github-workflows_minha-rede
+#
+version: "3.8"
+
+services:
+  redis_cache:
+    image: redis:alpine3.16
+    restart: on-failure
+    networks:
+      - minha-rede
+    ports:
+      - "6379"
+    command: redis-server --requirepass redis2022
+
+  http_echo:
+    container_name: echo
+    image: hashicorp/http-echo
+    restart: on-failure
+    networks:
+      - minha-rede
+    command:
+    - -listen=:8080
+    - -text="Hello World"
+
+  alpine:
+    container_name: linux
+    image: alpine:3.17
+    restart: on-failure
+    networks:
+      - minha-rede
+    command:
+    - /bin/sh
+    - -c
+    - |
+      apk update
+      apk add curl
+      sleep 365d
+
+networks:
+  minha-rede:
+    driver: bridge
