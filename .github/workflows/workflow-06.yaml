@@ -37,7 +37,7 @@ jobs:
           REDIS_HOST: redis_service
           REDIS_PORT: 6379      
         run: |
-          echo "${{ job.services.redis_service }}"
+          echo "${{ job.services }}"
           env
           apk add curl
           curl $REDIS_HOST:6379
