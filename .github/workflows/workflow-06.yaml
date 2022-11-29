@@ -37,6 +37,6 @@ jobs:
           REDIS_HOST: redis
           REDIS_PORT: 6379      
         run: |
-          nc -zv 127.0.0.1 6379
+          curl redis:6379
           cd github-workflows/
           node redisclient.js
