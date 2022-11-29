@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     container: node:alpine3.16
     services:
-      redis:
+      redis_service:
         image: redis
         options: >-
           --health-cmd "redis-cli ping"
@@ -34,11 +34,12 @@ jobs:
 
       - name: Connect to Redis
         env:
-          REDIS_HOST: redis
+          REDIS_HOST: redis_service
           REDIS_PORT: 6379      
         run: |
+          echo "${{ job.services.postgres.ports }}"
           env
           apk add curl
-          curl redis:6379
+          curl $REDIS_HOST:6379
           cd git-workflows-study/
           node redisclient.js
