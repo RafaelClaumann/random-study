@@ -34,10 +34,11 @@ jobs:
 
       - name: Connect to Redis
         env:
+          TESTES: ${{ job.services }}
           REDIS_HOST: redis_service
           REDIS_PORT: 6379      
         run: |
-          echo ${{ job.services }}
+          echo $TESTES 
           env
           apk add curl
           curl $REDIS_HOST:6379
