@@ -37,6 +37,7 @@ jobs:
           REDIS_HOST: redis
           REDIS_PORT: 6379      
         run: |
+          env
           apk add curl
           curl redis:6379
           cd git-workflows-study/
