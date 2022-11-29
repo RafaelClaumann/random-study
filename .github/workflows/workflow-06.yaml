@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd github-workflows/
+          cd git-workflows-study/
           npm init -y
           npm install redis
           npm ci
@@ -38,5 +38,5 @@ jobs:
           REDIS_PORT: 6379      
         run: |
           curl redis:6379
-          cd github-workflows/
+          cd git-workflows-study/
           node redisclient.js
