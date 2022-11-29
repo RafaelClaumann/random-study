@@ -4,7 +4,7 @@ on:
   push:
     paths: 
       - ".github/workflows/workflow-06.yaml"
-      - "github-workflows/redisclient.js"
+      - "git-workflows-study/redisclient.js"
 
 jobs:
   container-job:
