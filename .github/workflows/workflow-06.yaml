@@ -37,6 +37,6 @@ jobs:
           REDIS_HOST: redis
           REDIS_PORT: 6379      
         run: |
-          ping http://localhost:6379 -c 5 -W 5
+          nc -zv 127.0.0.1 6379
           cd github-workflows/
           node redisclient.js
