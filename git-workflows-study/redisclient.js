@@ -7,8 +7,7 @@ console.log(process.env.REDIS_PORT);
 async function testCache() {
     var client = redis.createClient({
         host: process.env.REDIS_HOST,
-        port: process.env.REDIS_PORT,
-        tls: {}
+        port: process.env.REDIS_PORT
     });
 
     await client.connect();
