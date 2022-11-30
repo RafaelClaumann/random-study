@@ -38,6 +38,8 @@ jobs:
           npm init -y > /dev/null
           npm install redis > /dev/null
 
+          curl localhost:9000 -v
+
       - name: Connect to Redis
         env:
           REDIS_HOST: localhost
