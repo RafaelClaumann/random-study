@@ -66,9 +66,9 @@ services:
 
         npm init -y > /dev/null
         npm install redis > /dev/null
-        npm ci > /dev/null
         node redisclient.js
 
+  # used for network connection tests
   http_echo:
     container_name: echo
     image: hashicorp/http-echo
@@ -79,6 +79,7 @@ services:
       - -listen=:8080
       - -text="Hello World"
 
+  # used for network connection tests
   alpine:
     container_name: linux
     image: alpine:3.17
