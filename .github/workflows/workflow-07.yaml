@@ -14,8 +14,6 @@ jobs:
         ports:
           - 9000:6739 #HOST_MACHINE_PORT:CONTAINER_PORT
         options: >-
-          redis-server
-          --requirepass redis2022
           --health-cmd "redis-cli ping"
           --health-interval 10s
           --health-timeout 5s
