@@ -12,7 +12,7 @@ jobs:
       redis_service:
         image: redis
         ports:
-          - 5500:6739
+          - 6739:6739 #HOST_MACHINE_PORT:CONTAINER_PORT
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -39,12 +39,12 @@ jobs:
           npm init -y > /dev/null
           npm install redis > /dev/null
 
-          curl localhost:5500 -v
+          curl localhost:6739 -v
 
       - name: Connect to Redis
         env:
           REDIS_HOST: 127.0.0.1
-          REDIS_PORT: 5500      
+          REDIS_PORT: 6739      
         run: |
           echo $PWD
           ls -l
