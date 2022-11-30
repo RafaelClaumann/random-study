@@ -48,4 +48,5 @@ jobs:
           echo "REDIS_HOST: $REDIS_HOST"
           echo "REDIS_PORT: $REDIS_PORT"   
 
-          curl localhost:5500 -v
+          cd git-workflows-study/
+          node redisclient.js
