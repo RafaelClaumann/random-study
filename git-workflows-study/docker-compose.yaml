@@ -9,18 +9,65 @@
 # docker-compose down
 #
 # docker network inspect github-workflows_minha-rede
+# docker logs nodejs
 #
 version: "3.8"
 
 services:
   redis_cache:
+    container_name: redis
     image: redis:alpine3.16
     restart: on-failure
     networks:
       - minha-rede
     ports:
-      - "6379"
-    command: redis-server --requirepass redis2022
+      - 6379
+    command: redis-server --requirepass redis2022 --loglevel verbose
+      
+  nodejs:
+    container_name: nodejs
+    image: node:alpine3.16
+    restart: on-failure
+    depends_on:
+      - redis_cache
+    networks:
+      - minha-rede
+    environment:
+      - REDIS_HOST=redis_cache
+      - REDIS_PORT=6379
+    command:
+      - bin/sh
+      - -c
+      - |
+        mkdir /home/client/
+        cd /home/client/
+        cat > redisclient.js <<'EOF'
+          const redis = require("redis");
+
+          const client = redis.createClient({
+              socket: {
+                  host: process.env.REDIS_HOST,
+                  port: process.env.REDIS_PORT
+              },
+              password: "redis2022"
+          });
+
+          client.on("error", err => { console.log("Error " + err); });
+
+          async function testCache() {
+              client.connect();
+              console.log("\nCache command: PING");
+              console.log("Cache response: " + await client.ping());
+              client.disconnect();
+          }
+
+          testCache();
+        EOF
+
+        npm init -y > /dev/null
+        npm install redis > /dev/null
+        npm ci > /dev/null
+        node redisclient.js
 
   http_echo:
     container_name: echo
@@ -29,8 +76,8 @@ services:
     networks:
       - minha-rede
     command:
-    - -listen=:8080
-    - -text="Hello World"
+      - -listen=:8080
+      - -text="Hello World"
 
   alpine:
     container_name: linux
@@ -39,13 +86,12 @@ services:
     networks:
       - minha-rede
     command:
-    - /bin/sh
-    - -c
-    - |
-      apk update
-      apk add curl
-      cp redisclient.js redisclient.js
-      sleep 365d
+      - /bin/sh
+      - -c
+      - |
+        apk update
+        apk add curl
+        sleep 365d
 
 networks:
   minha-rede:
