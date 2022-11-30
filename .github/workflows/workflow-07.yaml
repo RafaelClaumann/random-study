@@ -38,10 +38,6 @@ jobs:
           npm init -y > /dev/null
           npm install redis > /dev/null
 
-          printf "\n\n\n"
-
-          curl localhost:9000 -v
-
       - name: Connect to Redis
         env:
           REDIS_HOST: localhost
@@ -49,6 +45,12 @@ jobs:
         run: |
           echo $PWD
           ls -l
+          echo "REDIS_HOST: $REDIS_HOST"
+          echo "REDIS_PORT: $REDIS_PORT"
+
+          printf "\n\n\n"
+
+          curl localhost:9000 -v          
 
           cd git-workflows-study/
           node redisclient.js
