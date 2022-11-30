@@ -1,4 +1,4 @@
-name: ContainerJobAndService
+name: JobOnContainerAndServiceContainer
 
 on:
   push:

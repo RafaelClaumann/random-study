@@ -1,4 +1,4 @@
-name: RunningContainerJob
+name: JobOnContainer
 
 on:
   push:
