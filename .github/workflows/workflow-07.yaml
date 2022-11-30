@@ -33,8 +33,14 @@ jobs:
           echo
 
           cd git-workflows-study/
-          npm init -y
-          npm install redis
+          echo $PWD
+          ls -l
+
+          echo
+
+          npm version 
+          npm init -y > /dev/null
+          npm install redis > /dev/null
 
       - name: Connect to Redis
         env:
