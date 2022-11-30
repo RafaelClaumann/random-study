@@ -1,0 +1,45 @@
+name: ContainerJobAndService
+
+on:
+  push:
+    paths: 
+      - ".github/workflows/workflow-07.yaml"
+
+jobs:
+  runner-job:
+    runs-on: ubuntu-latest
+    services:
+      redis_service:
+        image: redis
+        ports:
+          - 6739:9000  #CONTAINER_PORT:HOST_MACHINE_PORT
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          ref: github-workflows
+
+      - name: Install dependencies
+        run: |
+          echo $PWD
+          ls -l
+
+          echo
+
+          cd git-workflows-study/
+          npm init -y
+          npm install redis
+
+      - name: Connect to Redis
+        env:
+          REDIS_HOST: redis_service
+          REDIS_PORT: 6379      
+        run: |
+          cd git-workflows-study/
+          node redisclient.js
