@@ -12,7 +12,7 @@ jobs:
       redis_service:
         image: redis
         ports:
-          - 9000:6739  #HOST_MACHINE_PORT:CONTAINER_PORT
+          - 5500:6739  #HOST_MACHINE_PORT:CONTAINER_PORT
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -41,12 +41,11 @@ jobs:
       - name: Connect to Redis
         env:
           REDIS_HOST: 127.0.0.1
-          REDIS_PORT: 9000      
+          REDIS_PORT: 5500      
         run: |
           echo $PWD
           ls -l
           echo "REDIS_HOST: $REDIS_HOST"
           echo "REDIS_PORT: $REDIS_PORT"   
 
-          cd git-workflows-study/
-          node redisclient.js
+          curl localhost:5500 -v
