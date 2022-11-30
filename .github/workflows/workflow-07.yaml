@@ -43,7 +43,7 @@ jobs:
 
       - name: Connect to Redis
         env:
-          REDIS_HOST: 127.0.0.1
+          REDIS_HOST: localhost
           REDIS_PORT: 6739      
         run: |
           echo $PWD
