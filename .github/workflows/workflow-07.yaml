@@ -30,13 +30,9 @@ jobs:
           echo $PWD
           ls -l
 
-          echo
-
           cd git-workflows-study/
           echo $PWD
           ls -l
-
-          echo
 
           npm version 
           npm init -y > /dev/null
@@ -44,7 +40,7 @@ jobs:
 
       - name: Connect to Redis
         env:
-          REDIS_HOST: redis_service
+          REDIS_HOST: 127.0.0.1
           REDIS_PORT: 6379      
         run: |
           cd git-workflows-study/
