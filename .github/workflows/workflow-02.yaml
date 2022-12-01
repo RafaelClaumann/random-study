@@ -1,0 +1,62 @@
+name: using-variables-workflow
+
+env:
+  USER_NAME: "rafael"
+  USER_PASSWORD: "1234"
+  USER_ID: "abc-def"
+
+on:
+  - workflow_dispatch
+#  push:
+#    paths: 
+#      - ".github/workflows/workflow-02.yaml"
+
+jobs:
+  github_env_file_content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: listing_variables
+        run: cat $GITHUB_ENV
+        
+  variables_in_workflow_scope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: using_variables
+        run: printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n"
+
+  variables_in_job_scope:
+    runs-on: ubuntu-latest
+    env:
+      USER_NAME: "claumann"
+      USER_PASSWORD: "4321"
+    steps:
+      - name: using_variables
+        run: |
+          printf "job env vars overrides workflow env vars values\n"
+          printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # claumann, 4321 and abc-def
+          
+          # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
+          # The step that creates or updates the environment variable does not have access to the new value, but all
+          # subsequent steps in a job will have access.
+          echo "USE_IN_NEXT_JOB=using_env_var_defined_in_other_job" >> $GITHUB_ENV
+          echo "USE_IN_NEXT_STEP=using_env_var_defined_in_other_step" >> $GITHUB_ENV
+          printf "GITHUB_ENV: $(cat $GITHUB_ENV)"
+      
+      - name: using_variables_from_other_step
+        run: |
+          printf "USE_IN_NEXT_JOB: ${{ env.USE_IN_NEXT_JOB }}\n"      # using_env_var_defined_in_other_job  | file system is shared between Steps
+          printf "USE_IN_NEXT_STEP: ${{ env.USE_IN_NEXT_STEP }}\n"    # using_env_var_defined_in_other_step | file system is shared between Steps
+          printf "GITHUB_ENV: $(cat $GITHUB_ENV)\n"     
+          
+  variables_in_step_scope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: using_variables
+        env:
+          USER_NAME: "bernardes"
+          USER_PASSWORD: "98765"
+        run: |
+          printf "step env vars overrides workflow env vars values\n"
+          printf "{ $USER_NAME }, { $USER_PASSWORD } and { $USER_ID }\n" # bernardes, 98765 and abc-def
+          printf "{ $USE_IN_NEXT_JOB }\n" # null, file system is not shared between Jobs
+          printf "GITHUB_ENV: $(cat $GITHUB_ENV)"
