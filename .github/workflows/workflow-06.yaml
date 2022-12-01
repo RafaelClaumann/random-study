@@ -1,0 +1,37 @@
+name: Workflow Job as Container in the Runner with a Service Container
+
+on:
+  - workflow_dispatch
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    container: node:alpine3.16
+    services:
+      redis_service:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 6
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Install dependencies
+        run: |
+          cd git-workflows/
+          npm init -y
+          npm install redis
+
+      - name: Connect to Redis
+        env:
+          REDIS_HOST: redis_service
+          REDIS_PORT: 6379      
+        run: |
+          cd git-workflows/
+          node redisclient.js
