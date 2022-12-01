@@ -33,7 +33,7 @@ jobs:
 
           npm version 
           npm init -y > /dev/null
-          npm install redis > /dev/null
+          npm install redis
 
       - name: Connect to Redis
         env:
