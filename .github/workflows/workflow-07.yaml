@@ -1,0 +1,54 @@
+name: Workflow Job Directly in the Runner and a Service Container
+
+on:
+  - workflow_dispatch
+
+jobs:
+  runner-job:
+    runs-on: ubuntu-latest
+    services:
+      redis_service:
+        image: redis
+        ports:
+          # https://docs.github.com/en/actions/using-containerized-services/about-service-containers#mapping-docker-host-and-service-container-ports
+          - 9000:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Install dependencies
+        run: |
+          cd git-workflows/
+          echo $PWD
+          ls -l
+
+          npm version 
+          npm init -y > /dev/null
+          npm install redis
+
+          docker logs $(docker container ls -q | head -n 1)
+
+          # https://docs.github.com/en/actions/using-github-hosted-runners/customizing-github-hosted-runners
+          sudo apt-get update > /dev/null
+          sudo apt-get install redis-tools -y > /dev/null
+          redis-cli -v
+          redis-cli -p 9000 ping
+
+      - name: Connect to Redis
+        env:
+          REDIS_HOST: localhost
+          REDIS_PORT: 9000
+        run: |
+          cd git-workflows/        
+          echo $PWD
+          ls -l
+
+          node redisclient.js
