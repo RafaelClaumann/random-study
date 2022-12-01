@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  nodejs:
+    container_name: nodejs
+    image: node:alpine3.16
+    restart: on-failure
+    volumes:
+      - $PWD:/home/javascript-action-host
+      - $PWD/dist:/home/javascript-action-container/dist
+    command:
+      - bin/sh
+      - -c
+      - |
+        cd home/
+        printf $$PWD
+        ls -l
+        echo
+
+        cp javascript-action-host/* javascript-action-container/ -f
+        
+        cd javascript-action-container/
+        echo $$PWD
+        ls -l
+        echo
+
+        echo "installing npm dependencies"
+        echo "npm $(npm -version)"
+        echo "node $(node -v)"
+        npm init -y &>/dev/null
+        npm install @actions/core &>/dev/null
+        npm install @actions/github &>/dev/null
+        npm i -g @vercel/ncc &>/dev/null
+        echo "install successful"
+        echo
+
+        echo $$PWD
+        ls -l
+        echo
+
+        rm -r /home/javascript-action-container/dist/*
+
+        echo "compiling code with @vercel/ncc"
+        ncc build index.js --license licenses.txt
+        ls -l
+        echo
+
+        cd dist/
+        echo $$PWD
+        ls -l
+        echo

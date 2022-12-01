@@ -1,0 +1,16 @@
+name: DemoJSAction
+description: "Display message"
+
+inputs:
+  name-of-you:  # id of input
+    description: "Your name"
+    required: true
+    default: "Rafael"
+    
+outputs:
+  time: # id of output
+    description: "The time of the message"
+    
+runs:
+  using: node12
+  main: dist/index.js
