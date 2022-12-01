@@ -1,0 +1,40 @@
+name: workflow-03
+
+on:
+  push:
+    paths: 
+      - ".github/workflows/workflow-03.yaml"
+#    branches:
+#      - "github-workflows"      
+#    paths-ignore:
+#      - "README.md"
+
+jobs:
+
+  JOB_read_repository_secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: STEP_read_right_repository_secret
+        run: |
+          printf "\nGitHub will print the secret value as ***.\n"
+          printf "Trying to print Secrets: ${{ secrets.REPOSITORY_SECRET }}\n"
+
+      - name: STEP_check_if_secret_is_blank
+        env:
+          SECRET_VALUE: ${{ secrets.REPOSITORY_SECRET }}
+        if: ${{ env.SECRET_VALUE != '' }}
+        run: |
+          printf "\nREPOSITORY_SECRET is not blank!!"
+
+      - name: STEP_force_exit
+        continue-on-error: true
+        run: |
+          printf "\nthis step will force exit with code 1\n"
+          exit 1
+    
+      - name: STEP_run_on_failure
+        if: ${{ failure() }}
+        run: |
+          # will not detect a reads on non existing secret
+          printf "\nthis step will run if 'STEP_force_exit' fail and 'STEP_force_exit' will always fail!!\n"
+          printf "FAIL!\n"
