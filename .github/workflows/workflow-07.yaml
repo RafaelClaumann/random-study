@@ -12,6 +12,7 @@ jobs:
       redis_service:
         image: redis
         ports:
+          # https://docs.github.com/en/actions/using-containerized-services/about-service-containers#mapping-docker-host-and-service-container-ports
           - 9000:6739
         options: >-
           --health-cmd "redis-cli ping"
@@ -39,8 +40,8 @@ jobs:
           docker logs $(docker container ls -q | head -n 1)
 
           # https://docs.github.com/en/actions/using-github-hosted-runners/customizing-github-hosted-runners
-          sudo apt-get update
-          sudo apt-get install redis-tools -y
+          sudo apt-get update > /dev/null
+          sudo apt-get install redis-tools -y > /dev/null
           redis-cli -v
           redis-cli -p 9000 ping
 
