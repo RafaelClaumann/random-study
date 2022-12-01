@@ -12,7 +12,7 @@ jobs:
       redis_service:
         image: redis
         ports:
-          - 9000:6739 #HOST_MACHINE_PORT:CONTAINER_PORT
+          - 6739:6739 #HOST_MACHINE_PORT:CONTAINER_PORT
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -38,7 +38,7 @@ jobs:
       - name: Connect to Redis
         env:
           REDIS_HOST: localhost
-          REDIS_PORT: 9000      
+          REDIS_PORT: 6739      
         run: |
           echo $PWD
           ls -l
