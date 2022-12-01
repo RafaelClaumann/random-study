@@ -34,7 +34,6 @@ jobs:
           npm version 
           npm init -y > /dev/null
           npm install redis
-
           
           echo "$(docker container ls -q | head -n 1)"
           docker logs $(docker container ls -q | head -n 1)
@@ -42,7 +41,7 @@ jobs:
       - name: Connect to Redis
         env:
           REDIS_HOST: localhost
-          REDIS_PORT: 6739      
+          REDIS_PORT: 6739
         run: |
           cd git-workflows-study/        
           echo $PWD
