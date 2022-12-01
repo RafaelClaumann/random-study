@@ -40,8 +40,8 @@ jobs:
           REDIS_HOST: localhost
           REDIS_PORT: 6739      
         run: |
+          cd git-workflows-study/        
           echo $PWD
           ls -l
 
-          cd git-workflows-study/
           node redisclient.js
