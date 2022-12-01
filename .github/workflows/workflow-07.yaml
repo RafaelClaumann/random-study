@@ -36,7 +36,7 @@ jobs:
           npm install redis
 
           REDIS_CONTAINER_NAME = $(docker container ls -q | head -n 1)
-          docker logs REDIS_CONTAINER_NAME
+          docker logs $REDIS_CONTAINER_NAME
 
       - name: Connect to Redis
         env:
