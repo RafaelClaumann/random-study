@@ -1,3 +1,5 @@
+name: Using Javascript Custom Action
+
 on:
   - workflow_dispatch
 
