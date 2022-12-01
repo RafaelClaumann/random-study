@@ -1,4 +1,4 @@
-name: workflow-01
+name: workflow-01.yaml
 
 on:
   - workflow_dispatch
