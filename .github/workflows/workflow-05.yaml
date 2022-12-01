@@ -1,0 +1,31 @@
+name: Workflow Job as Container in the Runner
+
+on:
+  push:
+    paths: 
+      - ".github/workflows/workflow-05.yaml"
+
+jobs:  
+  job_on_container:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
+      env: 
+        ACTOR_ENV: ${{ github.actor }}
+
+    steps:
+      - name: checkot_main_branch
+        uses: actions/checkout@main
+        with:
+          ref: main
+
+      - name: describe_container_os_version
+        run: |
+          cat /etc/os-release
+          echo
+          env
+
+      - name: print_some_context_vars
+        run: |
+          echo "$ACTOR_ENV"             # actor from job env var
+          echo "${{ github.actor }}"    # actor from github context https://docs.github.com/en/actions/learn-github-actions/contexts#github-context
