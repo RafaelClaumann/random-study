@@ -35,8 +35,7 @@ jobs:
           npm version 
           npm init -y > /dev/null
           npm install redis
-          
-          echo "$(docker container ls -q | head -n 1)"
+
           docker logs $(docker container ls -q | head -n 1)
 
           # https://docs.github.com/en/actions/using-github-hosted-runners/customizing-github-hosted-runners
