@@ -35,8 +35,9 @@ jobs:
           npm init -y > /dev/null
           npm install redis
 
-          REDIS_CONTAINER_NAME = $(docker container ls -q | head -n 1)
-          docker logs $REDIS_CONTAINER_NAME
+          
+          echo "$(docker container ls -q | head -n 1)"
+          docker logs $(docker container ls -q | head -n 1)
 
       - name: Connect to Redis
         env:
