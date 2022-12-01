@@ -1,4 +1,4 @@
-name: JobOnContainer
+name: Run a Workflow Job as a Container in the Runner
 
 on:
   push:
