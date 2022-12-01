@@ -1,9 +1,10 @@
 name: Workflow Job as Container in the Runner
 
 on:
-  push:
-    paths: 
-      - ".github/workflows/workflow-05.yaml"
+  - workflow_dispatch
+#  push:
+#    paths: 
+#      - ".github/workflows/workflow-05.yaml"
 
 jobs:  
   job_on_container:
