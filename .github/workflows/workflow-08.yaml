@@ -1,0 +1,17 @@
+on:
+  push:
+    paths: 
+      - ".github/workflows/workflow-08.yaml"
+jobs:
+  custom_js_action_job:
+    runs-on: ubuntu-latest
+    name: Custom js Action Demo
+    steps:
+      - name: First js action step
+        id: myjsaction
+        uses: RafaelClaumann/random-study/demojsaction@v1
+        with:
+          name-of-you: 'Pushpa'
+      
+      - name: Get the output message time
+        run: echo "The time was ${{ steps.myjsaction.outputs.time }}"
