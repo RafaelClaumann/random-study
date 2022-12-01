@@ -16,3 +16,11 @@ jobs:
       
       - name: Get the output message time
         run: echo "The time was ${{ steps.myjsaction.outputs.time }}"
+        
+  custom_js_action_job_01:
+    runs-on: ubuntu-latest
+    name: Custom js Action Demo 01
+    steps:
+      - name: First js action step
+        id: myjsaction
+        uses: rafaelclaumann/random-study/git-workflows/actions/javascript@v1
