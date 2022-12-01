@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: First js action step
         id: myjsaction
-        uses: RafaelClaumann/random-study/actions/javascript-action/demojsaction@v1
+        uses: rafaelclaumann/random-study@v1
         with:
           name-of-you: 'Pushpa'
       
