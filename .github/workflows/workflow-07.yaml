@@ -35,7 +35,7 @@ jobs:
           npm init -y > /dev/null
           npm install redis
 
-          readonly REDIS_CONTAINER_NAME = $(docker container ls -q 2>&1 | head -n 1)
+          REDIS_CONTAINER_NAME = $(docker container ls -q | head -n 1)
           docker logs REDIS_CONTAINER_NAME
 
       - name: Connect to Redis
