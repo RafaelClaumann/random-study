@@ -17,7 +17,7 @@ services:
         ls -l
         echo
 
-        cp javascript-action-host/* javascript-action-container/ -f
+        cp javascript-action-host/* javascript-action-container/
         
         cd javascript-action-container/
         echo $$PWD
