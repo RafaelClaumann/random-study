@@ -35,6 +35,9 @@ jobs:
           npm init -y > /dev/null
           npm install redis
 
+          docker container ls
+          docker logs redis_service
+
       - name: Connect to Redis
         env:
           REDIS_HOST: localhost
