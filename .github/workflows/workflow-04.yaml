@@ -1,0 +1,86 @@
+name: sharing-artifacts
+
+on:
+  - workflow_dispatch
+#  push:
+#    paths:
+#      - ".github/workflows/workflow-04.yaml"
+
+jobs:
+
+  BuildAndUploadArtifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout_main_branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: list_checkout_files
+        run: |
+          printf "\nCURRENT_DIR: $PWD\n"
+          ls -l
+
+          cd java
+          printf "\nCURRENT_DIR: $PWD\n"          
+          ls -l
+        
+          cd hello-world-v1
+          printf "\nCURRENT_DIR: $PWD\n"
+          ls -l
+
+      - name: build_artifact
+        run: |
+          printf "$(java -version)\n"
+          printf "$(mvn -version)\n"
+
+          printf "\ncurrent_dir: $PWD\n"
+          cd java/hello-world-v1/
+          printf "current_dir: $PWD\n"
+
+          printf "building java artifact!\n"
+          mvn clean install \
+          --threads 2C \
+          --quiet \
+          --file pom.xml
+
+          cd target
+          printf "\ncurrent_dir: $PWD\n"
+          ls -l
+          cp *.jar ~/artifact.jar
+
+          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "HOME: $HOME"
+
+      - name: upload_artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: hello-world-v1-artifact
+          path: "~/*.jar"
+          if-no-files-found: error
+        
+  ExecuteArtifact:
+    runs-on: ubuntu-latest
+    needs: BuildAndUploadArtifact
+    steps:
+      - name: download_artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: hello-world-v1-artifact
+
+      - name: run_artifact
+        run: |
+          printf "\nCURRENT_DIR: $PWD\n"
+          ls -l
+
+          java -jar artifact.jar
+    
+  DeleteUploadedArtifact:
+    runs-on: ubuntu-latest
+    needs: ExecuteArtifact
+    steps:
+      - name: delete_artifact
+        uses: geekyeggo/delete-artifact@v2
+        with:
+            name: hello-world-v1-artifact
