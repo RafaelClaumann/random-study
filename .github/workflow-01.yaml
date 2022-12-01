@@ -1,0 +1,64 @@
+name: workflow-01
+
+on:
+  - workflow_dispatch
+#  push:
+#    paths: 
+#      - ".github/workflows/workflow-01.yaml"
+#    branches:
+#      - "github-workflows"       
+#    paths-ignore:
+#      - "README.md"
+
+jobs:
+
+  print_content_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: STEP_print_folder_content
+      run: |
+        echo $PWD
+        echo "Using github workflows!" >> some_file.txt
+        cat some_file.txt
+        ls -l
+
+  build_java_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: STEP_checkout_github
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+
+      - name: STEP_setup_jdk
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'corretto'
+
+      - name: STEP_list_files
+        run: |
+          printf "listing files from { $PWD }\n"
+          ls
+          
+          cd java/
+          printf "\nlisting files from { $PWD }\n"
+          ls
+          
+          cd hello-world-v1/
+          printf "\nlisting files from { $PWD }\n"
+          ls
+          
+      - name: STEP_mvn_exec_java
+        run: |
+          cd java/hello-world-v1/
+          printf "listing files from { $PWD }\n"
+          ls
+          echo
+          
+          mvn clean install \
+          --threads 2C \
+          --quiet \
+          --file pom.xml
+          
+          mvn exec:java
