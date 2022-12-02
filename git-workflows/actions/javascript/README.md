@@ -1,5 +1,7 @@
 # Javascript Action
 
+Essa action é utilizada no [workflow-08.yaml](https://github.com/RafaelClaumann/random-study/blob/main/.github/workflows/workflow-08.yaml).
+
 
 ### Building Action
 O arquivo `index.js` é compilado em um container chamado `nodejs` que esta definido no arquivo `docker-compose.yaml`. O diretório `actions/javascript/dist/` esta mapeado no container `nodejs` e receberá o `index.js` compilado. Após a compilação do arquivo é preciso realizar o `push` para o GitHub e gerar uma nova `tag`.
