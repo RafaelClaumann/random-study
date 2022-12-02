@@ -15,6 +15,17 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: calling_other_action
+      uses: actions/checkout@v3 
+      with:
+        ref: main
+      
+    - name: list_checkout_files
+      run: |
+        echo $PWD
+        ls -l
+      shell: bash
+
     - name: hello_with_input
       run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
