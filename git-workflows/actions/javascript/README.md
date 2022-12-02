@@ -1,11 +1,13 @@
 # Javascript Action
 
+
+### Building Action
 O arquivo `index.js` é compilado em um container chamado `nodejs` que esta definido no arquivo `docker-compose.yaml`. O diretório `actions/javascript/dist/` esta mapeado no container `nodejs` e receberá o `index.js` compilado. Após a compilação do arquivo é preciso realizar o `push` para o GitHub e gerar uma nova `tag`.
 
-#### Sequência de Comandos Executados:
+#### Sequência de Comandos Executados
 ``` bash
 echo $PWD                                   
-  ~/random-study/actions/javascript-action
+  ~/random-study/actions/javascript
 
 docker-compose up
   nodejs  | compiling code with @vercel/ncc
@@ -25,9 +27,9 @@ git tag -a v1 -m "js action release"
 git push --follow-tags
 ```
 
-## Workflow Usage
+#### Action Usage
 
-O workflow espera uma String chamada `name-of-you` como entrada, isso pode ser visto na [linha 4 do arquivo action.yaml](https://github.com/RafaelClaumann/random-study/blob/main/git-workflows/actions/javascript/action.yaml#L4). O output da action é definido no [atributo `time`]() que devolverá o timestamp no momento da execução do workflow.
+A action recebe uma String chamada `name-of-you` como input, se `name-of-you` não for fornecida o valor default(_Rafael_) será assumido. A configuração do input pode ser visto na [linha 4](https://github.com/RafaelClaumann/random-study/blob/main/git-workflows/actions/javascript/action.yaml#L4) do arquivo action.yaml. Um output chamado `time` é definido na [linha 8](https://github.com/RafaelClaumann/random-study/blob/main/git-workflows/actions/javascript/action.yaml#L10), esse atributo receberá o timestamp do momento em que o step foi iniciado.
 
 ``` yaml
 ##############
@@ -74,7 +76,7 @@ steps:
   #     - The time was 23:33:55 GMT+0000
 ```
 
-O arquivo action.yaml não trabalha sozinho, ele apenas define um "contrato" enquanto o index.js recebe, processsa e devolve as informações conforme o contrato.
+O arquivo action.yaml não trabalha sozinho, ele apenas define um "contrato" enquanto o index.js recebe, processsa e devolve as informações.
 ``` javascript
 // `name-of-you` input defined in action metadata file
 const yourName = core.getInput('name-of-you');
