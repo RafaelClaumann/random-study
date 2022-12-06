@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: rafaelclaumann/random-study/git-workflows/actions/docker@v4
+        uses: rafaelclaumann/random-study/git-workflows/actions/docker@v5
         with:
           who-to-greet: 'Mona the Octocat'
 
