@@ -1,0 +1,19 @@
+name: Using Docker Custom Action
+
+on:
+  - workflow_dispatch
+
+jobs:
+  hello_world_job:
+    name: A job to say hello  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: rafaelclaumann/random-study/git-workflows/actions/docker@v4
+        with:
+          who-to-greet: 'Mona the Octocat'
+
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
