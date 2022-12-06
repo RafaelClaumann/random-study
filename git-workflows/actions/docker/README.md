@@ -14,7 +14,7 @@ A imagem Docker é construída a partir do `Dockerfile`. O arquivo entrypoint.sh
 
 <br>
 
-Como dito, o arquivo `entrypoint.sh` espera uma entrada no [parametro posicional](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Positional-Parameters) `$1` e o imprime na tela com o comando `echo`. Em seguida, o timestamp do container é exportado para o arquivo de logs do GitHub([$GITHUB_OUTPUT](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idoutputs)).
+O arquivo `entrypoint.sh` espera uma entrada no [parametro posicional](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Positional-Parameters) `$1` e o imprime na tela com o comando `echo`. Em seguida, o timestamp do container é exportado para o arquivo de logs do GitHub([$GITHUB_OUTPUT](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idoutputs)).
 
 O valor que `$1` recebe é definido quando o container é iniciado e, nesse exemplo, quem inicia o container é a *action*. O valor do input `who-to-great` será passado para o `ENTRYPOINT` do container através do campo `args` do `action.yaml`.
 
