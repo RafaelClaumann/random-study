@@ -2,6 +2,10 @@
 
 Essa action é utilizada no [workflow-10.yaml](https://github.com/RafaelClaumann/random-study/blob/main/.github/workflows/workflow-10.yaml).
 
+Action desenvolvida de acordo com a documentação: [Create a Docker container action](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action).
+
+<br>
+
 ### Como Funciona
 
 A imagem Docker é construída a partir do `Dockerfile`. O arquivo entrypoint.sh é copiado para a raiz da imagem construída e é definido como ponto de entrada([ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint)).
@@ -23,3 +27,28 @@ O que foi descrito acima pode ser visto como:
 <br>
 
 O output `time` estará disponivel para ser acessado no momento que a action for invocada por algum workflow através do comando: `steps.<step_id>.outputs.time`
+
+
+### Usando a Action
+
+``` yaml
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: actions/hello-world-docker-actionv2
+        # set 'who-to-great' action input
+        with:
+          who-to-greet: 'Mona the Octocat'
+
+      # Use the output from the `hello` step
+      # ${{ steps.<step-id>.outputs.<output-name> }}
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+```
