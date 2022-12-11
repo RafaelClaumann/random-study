@@ -26,4 +26,4 @@ jobs:
       - name: Override container ENTRYPOINT
         uses: rafaelclaumann/random-study/git-workflows/actions/docker@v5
         with:
-          entrypoint: /bin/sh -c "echo Overriding ENTRYPOINT"
+          entrypoint: /bin/netstat
