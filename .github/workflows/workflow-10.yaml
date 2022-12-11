@@ -17,3 +17,13 @@ jobs:
 
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+  override_entrypoint_job:
+    name: A job to override container ENTRYPOINT
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Override container ENTRYPOINT
+        uses: rafaelclaumann/random-study/git-workflows/actions/docker@v5
+        with:
+          entrypoint: /bin/sh -c "echo Overriding ENTRYPOINT"
