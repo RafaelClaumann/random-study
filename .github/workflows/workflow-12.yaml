@@ -1,4 +1,4 @@
-name: Workflow Job Directly in the Runner and a Service Container
+name: Calling Reusable Workflow
 
 on:
   - workflow_dispatch
