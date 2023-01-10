@@ -5,6 +5,6 @@ on:
 
 jobs:
   call-workflow-2-in-local-repo:
-    uses: ./.github/workflows/workflow-reusable-11.yml
+    uses: rafaelclaumann/random-study/.github/workflows/workflow-reusable-11.yml
     with:
       config-path: TESTE-CONFIG-PATH-INPUT
