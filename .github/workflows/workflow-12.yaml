@@ -1,0 +1,10 @@
+name: Workflow Job Directly in the Runner and a Service Container
+
+on:
+  - workflow_dispatch
+
+jobs:
+  call-workflow-2-in-local-repo:
+    uses: ./.github/workflows/workflow-reusable-11.yml
+    with:
+      config-path: TESTE-CONFIG-PATH-INPUT
