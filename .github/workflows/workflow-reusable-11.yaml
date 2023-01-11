@@ -8,7 +8,7 @@ on:
         type: string
 
 jobs:
-  triage:
+  print_reusable_workflow_input:
     runs-on: ubuntu-latest
     steps:
       - name: echo_workflow_input
