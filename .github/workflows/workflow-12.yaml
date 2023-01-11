@@ -5,17 +5,17 @@ on:
 
 jobs:
   call-workflow-1-in-local-repo:
-    uses: rafaelclaumann/random-study/.github/workflows/reusable/reusable-workflow-01.yaml@5b2846ed2c5a732f476fdce5ee6751e19aa7c53d
+    uses: rafaelclaumann/random-study/.github/workflows/reusable-workflow-01.yaml@5b2846ed2c5a732f476fdce5ee6751e19aa7c53d
     with:
       config-path: CALL_REUSABLE_WORKFLOW_WITH_COMMIT_SHA
 
   call-workflow-2-in-local-repo:
-    uses: rafaelclaumann/random-study/.github/workflows/reusable/reusable-workflow-01.yaml@main
+    uses: rafaelclaumann/random-study/.github/workflows/reusable-workflow-01.yaml@main
     with:
       config-path: CALL_REUSABLE_WORKFLOW_WITH_BRANCH_NAME
 
   call-workflow-3-in-local-repo:
-    uses: ./.github/workflows/reusable/reusable-workflow-01.yaml
+    uses: ./.github/workflows/reusable-workflow-01.yaml
     with:
       config-path: CALL_REUSABLE_WORKFLOW_LOCAL_REFERENCE
 
@@ -23,6 +23,6 @@ jobs:
     strategy:
       matrix:
         variables: [dev, stage, prod]
-    uses: ./.github/workflows/reusable/reusable-workflow-01.yaml
+    uses: ./.github/workflows/reusable-workflow-01.yaml
     with:
       config-path: ${{ matrix.variables }}
