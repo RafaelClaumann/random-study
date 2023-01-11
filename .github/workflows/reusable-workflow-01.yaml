@@ -6,6 +6,9 @@ on:
       config-path:
         required: true
         type: string
+    secrets:
+      some-secret:
+        required: false
 
 jobs:
   print_reusable_workflow_input_01:
@@ -13,5 +16,7 @@ jobs:
     steps:
       - name: echo_workflow_input
         run: |
-          echo input-01: ${{ inputs.config-path }}
+          echo input(config-path): ${{ inputs.config-path }}
+          echo
+          echo secret(some-secret): ${{ secrets.some-secret }}
         shell: bash
