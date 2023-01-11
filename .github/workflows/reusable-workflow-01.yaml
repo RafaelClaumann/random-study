@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: echo_workflow_input
         run: |
-          echo input(config-path): ${{ inputs.config-path }}
+          echo config-path: ${{ inputs.config-path }}
           echo
-          echo secret(some-secret): ${{ secrets.some-secret }}
+          echo some-secret: ${{ secrets.some-secret }}
         shell: bash
