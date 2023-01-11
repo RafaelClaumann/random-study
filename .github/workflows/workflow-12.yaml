@@ -4,7 +4,12 @@ on:
   - workflow_dispatch
 
 jobs:
+  call-workflow-1-in-local-repo:
+    uses: rafaelclaumann/random-study/.github/workflows/workflow-reusable-11.yaml@97944f5b437161a7d719676b72695887a60643fb
+    with:
+      config-path: CALL-REUSABLE-WORKFLOW-WITH-COMMIT-SHA
+
   call-workflow-2-in-local-repo:
     uses: rafaelclaumann/random-study/.github/workflows/workflow-reusable-11.yaml@main
     with:
-      config-path: TESTE-CONFIG-PATH-INPUT
+      config-path: CALL-REUSABLE-WORKFLOW-WITH-BRANCH-NAME      
