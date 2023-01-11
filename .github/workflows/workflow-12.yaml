@@ -17,4 +17,12 @@ jobs:
   call-workflow-3-in-local-repo:
     uses: ./.github/workflows/workflow-reusable-11.yaml
     with:
-      config-path: CALL_REUSABLE_WORKFLOW_WITH_BRANCH_NAME      
+      config-path: CALL_REUSABLE_WORKFLOW_LOCAL_REFERENCE
+
+  call-workflow-4-in-local-repo-matrix-strategy:
+    strategy:
+      matrix:
+        variables: [dev, stage, prod]
+    uses: ./.github/workflows/workflow-reusable-11.yaml
+    with:
+      config-path: ${{ matrix.variables }}

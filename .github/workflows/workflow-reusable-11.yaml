@@ -15,11 +15,3 @@ jobs:
         run: |
           echo input-01: ${{ inputs.config-path }}
         shell: bash
-
-  print_reusable_workflow_input_02:
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo_workflow_input_02
-        run: |
-          echo input-02: ${{ inputs.config-path }}
-        shell: bash
