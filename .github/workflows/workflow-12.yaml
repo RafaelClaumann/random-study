@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-workflow-1-in-local-repo:
-    uses: rafaelclaumann/random-study/.github/workflows/workflow-reusable-11.yaml@83267bd96b416906516685686e6285cede19d7e0
+    uses: rafaelclaumann/random-study/.github/workflows/workflow-reusable-11.yaml@f9234a234a459811887bcc28f73eff53bf6ebe0a
     with:
       config-path: CALL_REUSABLE_WORKFLOW_WITH_COMMIT_SHA
 
