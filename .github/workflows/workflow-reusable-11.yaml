@@ -8,10 +8,18 @@ on:
         type: string
 
 jobs:
-  print_reusable_workflow_input:
+  print_reusable_workflow_input_01:
     runs-on: ubuntu-latest
     steps:
       - name: echo_workflow_input
         run: |
-          echo input: ${{ inputs.config-path }}
-        shell: bash            
+          echo input-01: ${{ inputs.config-path }}
+        shell: bash
+
+  print_reusable_workflow_input_02:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo_workflow_input_02
+        run: |
+          echo input-02: ${{ inputs.config-path }}
+        shell: bash
