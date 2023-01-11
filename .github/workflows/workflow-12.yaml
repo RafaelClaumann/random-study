@@ -12,4 +12,9 @@ jobs:
   call-workflow-2-in-local-repo:
     uses: rafaelclaumann/random-study/.github/workflows/workflow-reusable-11.yaml@main
     with:
+      config-path: CALL_REUSABLE_WORKFLOW_WITH_BRANCH_NAME
+
+  call-workflow-3-in-local-repo:
+    uses: .github/workflows/workflow-reusable-11.yaml@main
+    with:
       config-path: CALL_REUSABLE_WORKFLOW_WITH_BRANCH_NAME      
