@@ -31,4 +31,5 @@ jobs:
     uses: rafaelclaumann/random-study/.github/workflows/reusable-workflow-01.yaml@main
     with:
       config-path: CALL_REUSABLE_WORKFLOW_WITH_SECRET
+    secrets:
       some-secret: ${{ secrets.MY_SECRET_SUPER_SECRET }}  
