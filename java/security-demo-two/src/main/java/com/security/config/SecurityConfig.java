@@ -1,6 +1,7 @@
 package com.security.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,18 +14,53 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.authorizeHttpRequests(authConfig -> {
-                    authConfig.antMatchers(HttpMethod.GET, "/").permitAll();
-                    authConfig.antMatchers(HttpMethod.GET, "/user/**").hasAnyRole("ADMIN", "USER");
-                    authConfig.antMatchers(HttpMethod.GET, "/admin/**").hasRole("ADMIN");
-                    authConfig.anyRequest().hasRole("ADMIN");
-                })
-                .formLogin(Customizer.withDefaults())
+    @Order(100)
+    @Bean(name = "filter01")
+    public SecurityFilterChain mySecurityFilter01(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/"))
+                .authorizeHttpRequests(authConfig -> authConfig
+                        .mvcMatchers(HttpMethod.GET, "/")
+                        .permitAll())
+                .httpBasic(Customizer.withDefaults())
+                .build();
+    }
+
+    @Order(101)
+    @Bean(name = "filter02")
+    public SecurityFilterChain mySecurityFilter02(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/user/**"))
+                .authorizeHttpRequests(authConfig -> authConfig
+                        .mvcMatchers(HttpMethod.GET, "/user/**")
+                        .hasAnyRole("ADMIN", "USER"))
+                .httpBasic(Customizer.withDefaults())
+                .build();
+    }
+
+    @Order(103)
+    @Bean(name = "filter03")
+    public SecurityFilterChain mySecurityFilter03(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/admin/**"))
+                .authorizeHttpRequests(authConfig -> authConfig
+                        .mvcMatchers(HttpMethod.GET, "/admin/**")
+                        .hasRole("ADMIN"))
+                .httpBasic(Customizer.withDefaults())
+                .build();
+    }
+
+    @Order(104)
+    @Bean(name = "filter04")
+    public SecurityFilterChain mySecurityFilter04(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .requestMatchers(matcherConfig -> matcherConfig.anyRequest())
+                .authorizeHttpRequests(authConfig -> authConfig
+                        .anyRequest()
+                        .authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
