@@ -19,8 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Order(100)
-    @Bean(name = "filter01")
-    public SecurityFilterChain mySecurityFilter01(HttpSecurity httpSecurity) throws Exception {
+    @Bean(name = "filter00")
+    public SecurityFilterChain mySecurityFilter00(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/"))
                 .authorizeHttpRequests(authConfig -> authConfig
@@ -31,8 +31,8 @@ public class SecurityConfig {
     }
 
     @Order(101)
-    @Bean(name = "filter02")
-    public SecurityFilterChain mySecurityFilter02(HttpSecurity httpSecurity) throws Exception {
+    @Bean(name = "filter01")
+    public SecurityFilterChain mySecurityFilter01(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/user/**"))
                 .authorizeHttpRequests(authConfig -> authConfig
@@ -43,9 +43,9 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Order(103)
-    @Bean(name = "filter03")
-    public SecurityFilterChain mySecurityFilter03(HttpSecurity httpSecurity) throws Exception {
+    @Order(102)
+    @Bean(name = "filter02")
+    public SecurityFilterChain mySecurityFilter02(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/admin/**"))
                 .authorizeHttpRequests(authConfig -> authConfig
@@ -56,9 +56,9 @@ public class SecurityConfig {
                 .build();
     }
 
-    @Order(104)
-    @Bean(name = "filter04")
-    public SecurityFilterChain mySecurityFilter04(HttpSecurity httpSecurity) throws Exception {
+    @Order(103)
+    @Bean(name = "filter03")
+    public SecurityFilterChain mySecurityFilter03(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .requestMatchers(matcherConfig -> matcherConfig.anyRequest())
                 .authorizeHttpRequests(authConfig -> authConfig
