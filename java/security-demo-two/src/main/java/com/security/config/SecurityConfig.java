@@ -3,13 +3,14 @@ package com.security.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,6 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> authConfig
                         .mvcMatchers(HttpMethod.GET, "/user/**")
                         .hasAnyRole("ADMIN", "USER"))
+                .authenticationProvider(this.authenticationProvider())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
@@ -49,6 +51,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> authConfig
                         .mvcMatchers(HttpMethod.GET, "/admin/**")
                         .hasRole("ADMIN"))
+                .authenticationProvider(this.authenticationProvider())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
@@ -61,21 +64,24 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> authConfig
                         .anyRequest()
                         .authenticated())
+                .authenticationProvider(this.authenticationProvider())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
+        final String adminEncodedPassword = this.encoder().encode("password");
         UserDetails admin = User.builder()
                 .username("admin")
-                .password("password")
+                .password(adminEncodedPassword)
                 .roles("ADMIN")
                 .build();
 
+        final String userEncodedPassword = this.encoder().encode("123");
         UserDetails user = User.builder()
                 .username("rafael")
-                .password("123")
+                .password(userEncodedPassword)
                 .roles("USER")
                 .build();
 
@@ -83,8 +89,13 @@ public class SecurityConfig {
     }
 
     @Bean
+    public AuthenticationProvider authenticationProvider() {
+        return new CustomAuthenticationProvider(this.userDetailsService(), this.encoder());
+    }
+
+    @Bean
     public PasswordEncoder encoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
 }
