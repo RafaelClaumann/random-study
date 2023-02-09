@@ -26,7 +26,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> authConfig
                         .mvcMatchers(HttpMethod.GET, "/")
                         .permitAll())
-                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
@@ -65,7 +64,7 @@ public class SecurityConfig {
                         .anyRequest()
                         .authenticated())
                 .authenticationProvider(this.authenticationProvider())
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(customizer -> customizer.authenticationEntryPoint(new CustomEntrypoint()))
                 .build();
     }
 
