@@ -22,10 +22,10 @@ public class SecurityConfig {
     @Bean(name = "filter00")
     public SecurityFilterChain mySecurityFilter00(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/"))
+                .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/", "/login"))
                 .authorizeHttpRequests(authConfig -> authConfig
-                        .mvcMatchers(HttpMethod.GET, "/")
-                        .permitAll())
+                        .mvcMatchers("/", "login").permitAll()
+                )
                 .build();
     }
 
@@ -49,9 +49,10 @@ public class SecurityConfig {
                 .requestMatchers(matcherConfig -> matcherConfig.mvcMatchers("/admin/**"))
                 .authorizeHttpRequests(authConfig -> authConfig
                         .mvcMatchers(HttpMethod.GET, "/admin/**")
-                        .hasRole("ADMIN"))
+                        .hasRole("ADMIN")
+                )
                 .authenticationProvider(this.authenticationProvider())
-                .httpBasic(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
                 .build();
     }
 
@@ -62,7 +63,8 @@ public class SecurityConfig {
                 .requestMatchers(matcherConfig -> matcherConfig.anyRequest())
                 .authorizeHttpRequests(authConfig -> authConfig
                         .anyRequest()
-                        .authenticated())
+                        .authenticated()
+                )
                 .authenticationProvider(this.authenticationProvider())
                 .httpBasic(customizer -> customizer.authenticationEntryPoint(new CustomEntrypoint()))
                 .build();
