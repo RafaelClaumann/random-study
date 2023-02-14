@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> authConfig
                         .mvcMatchers("/", "login").permitAll()
                 )
+                .formLogin(Customizer.withDefaults())
                 .build();
     }
 
