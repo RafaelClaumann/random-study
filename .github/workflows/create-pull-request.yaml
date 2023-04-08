@@ -21,7 +21,7 @@ jobs:
         pr_draft: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: build_artifact
+    - name: build_worker
       run: |
         printf "$(java -version)\n"
         printf "$(mvn -version)\n"
@@ -30,14 +30,8 @@ jobs:
         cd java/hello-world-v1/
         printf "current_dir: $PWD\n"
         printf "building java artifact!\n"
+
         mvn clean install \
         --threads 2C \
         --quiet \
-        --file pom.xml
-        cd target
-        printf "\ncurrent_dir: $PWD\n"
-        ls -l
-        cp *.jar ~/artifact.jar
-        echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-        echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-        echo "HOME: $HOME"        
+        --file pom.xml    
