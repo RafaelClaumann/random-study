@@ -1,4 +1,4 @@
-name: Run the Action on each commit
+name: Open PR to main
 on:
   push:
     branches:
@@ -14,9 +14,9 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "feature, automated pr"
-          pr_title: "[Example] Simple demo"
+          pr_title: "Pulling ${{ github.ref_name }} into main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}          
 
       - name: build_worker
         run: |
