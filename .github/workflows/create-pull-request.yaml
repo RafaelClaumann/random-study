@@ -33,5 +33,4 @@ jobs:
 
         mvn clean install \
         --threads 2C \
-        --quiet \
         --file pom.xml    
