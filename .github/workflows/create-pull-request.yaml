@@ -3,19 +3,15 @@ on:
   push:
     branches:
       - feature/**
+
 jobs:
-  action-pull-request:
+  print_content_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Create pull request
-        uses: devops-infra/action-pull-request@v0.5.5
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          title: Automatic pull request
-          target_branch: main
-          template: .github/PULL_REQUEST_TEMPLATE.md
-          body: "**Automated pull request**"
-          old_string: "<!-- Add your description here -->"
-          new_string: "** Automatic pull request**"
+    - name: STEP_print_folder_content
+      run: |
+        echo $GITHUB_REF
+        echo $PWD
+        echo "Using github workflows!" >> some_file.txt
+        cat some_file.txt
+        ls -l
