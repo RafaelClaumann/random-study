@@ -2,7 +2,7 @@ name: Run the Action on each commit
 on:
   push:
     branches:
-      - feature/**
+      - 'feature/**'    
 
 jobs:
   action-pull-request:
