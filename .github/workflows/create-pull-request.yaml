@@ -1,0 +1,16 @@
+name: on-branch-created
+on:
+  create:
+    branch:
+      - feature/**
+
+jobs:
+  print_content_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: STEP_print_folder_content
+      run: |
+        echo $PWD
+        echo "Using github workflows!" >> some_file.txt
+        cat some_file.txt
+        ls -l
