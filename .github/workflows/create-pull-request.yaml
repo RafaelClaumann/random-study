@@ -5,32 +5,29 @@ on:
       - feature/**
 
 jobs:
-  pull-request:
-    name: Open PR to main
+  create-pull-request:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      name: checkout
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "feature, automated pr"
+          pr_title: "[Example] Simple demo"
 
-    - uses: repo-sync/pull-request@v2
-      name: pull-request
-      with:
-        destination_branch: "main"
-        pr_title: "Pulling ${{ github.ref_name }} into main"
-        pr_body: "👑 *An automated PR*"
-        pr_draft: false
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: build_worker
+        run: |
+          printf "$(java -version)\n"
+          printf "$(mvn -version)\n"
+          printf "\ncurrent_dir: $PWD\n"
 
-    - name: build_worker
-      run: |
-        printf "$(java -version)\n"
-        printf "$(mvn -version)\n"
-        printf "\ncurrent_dir: $PWD\n"
-        
-        cd java/hello-world-v1/
-        printf "current_dir: $PWD\n"
-        printf "building java artifact!\n"
+          cd java/hello-world-v1/
+          printf "current_dir: $PWD\n"
+          printf "building java artifact!\n"
 
-        mvn clean install \
-        --threads 2C \
-        --file pom.xml    
+          mvn clean install \
+          --threads 2C \
+          --file pom.xml
