@@ -10,6 +10,7 @@ jobs:
     steps:
     - name: STEP_print_folder_content
       run: |
+        echo $GITHUB_REF_NAME
         echo $GITHUB_REF
         echo $PWD
         echo "Using github workflows!" >> some_file.txt
