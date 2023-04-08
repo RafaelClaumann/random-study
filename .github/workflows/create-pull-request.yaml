@@ -5,12 +5,25 @@ on:
       - feature/**
 
 jobs:
-  print_content_job:
+  action-pull-request:
     runs-on: ubuntu-latest
     steps:
-    - name: STEP_print_folder_content
-      run: |
-        echo $PWD
-        echo "Using github workflows!" >> some_file.txt
-        cat some_file.txt
-        ls -l
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Create pull request
+        uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: Automatic pull request
+          target_branch: main
+          template: .github/PULL_REQUEST_TEMPLATE.md
+          body: "**Automated pull request**"
+          reviewer: octocat
+          assignee: octocat
+          label: enhancement
+          milestone: My milestone
+          draft: true
+          old_string: "<!-- Add your description here -->"
+          new_string: "** Automatic pull request**"
+          get_diff: true
+          allow_no_diff: false
