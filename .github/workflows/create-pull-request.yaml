@@ -1,4 +1,4 @@
-name: on-branch-created
+name: Run the Action on each commit
 on:
   push:
     branches:
