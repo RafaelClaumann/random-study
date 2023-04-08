@@ -13,10 +13,10 @@ jobs:
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
-          destination_branch: main
-          pr_label: feature, automated pr
-          pr_title: Pulling ${{ github.ref_name }} into main
-          github_token: ${{ secrets.GITHUB_TOKEN }}    
+          destination_branch: "main"
+          pr_label: "feature, automated pr"
+          pr_title: "Pulling ${{ github.ref_name }} into main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: build_worker
         run: |
