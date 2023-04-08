@@ -1,7 +1,7 @@
 name: on-branch-created
 on:
-  create:
-    branch:
+  push:
+    branches:
       - feature/**
 
 jobs:
