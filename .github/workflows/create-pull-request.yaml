@@ -8,11 +8,7 @@ jobs:
   print_content_job:
     runs-on: ubuntu-latest
     steps:
-    - name: STEP_print_folder_content
-      run: |
-        echo $GITHUB_REF_NAME
-        echo $GITHUB_REF
-        echo $PWD
-        echo "Using github workflows!" >> some_file.txt
-        cat some_file.txt
-        ls -l
+      - name: create pull request
+        run: gh pr create -B $GITHUB_REF_NAME -H main --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
