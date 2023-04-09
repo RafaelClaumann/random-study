@@ -1,0 +1,28 @@
+name: Open PR to main
+on:
+  push:
+    branches:
+      - feature/**
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create pull request
+        run: gh pr create -B {{ github.ref_name }} -H main --title 'Merge {{ github.ref_name }} into main' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: build_hello_world
+        run: |
+          printf "$(java -version)\n"
+          printf "$(mvn -version)\n"
+          printf "\ncurrent_dir: $PWD\n"
+
+          cd java/hello-world-v1/
+          printf "current_dir: $PWD\n"
+          printf "building java artifact!\n"
+
+          mvn clean install \
+          --threads 2C \
+          --file pom.xml
