@@ -8,6 +8,8 @@ jobs:
   create-pull-request:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
       - name: create pull request
         run: gh pr create -B ${{ github.ref_name }} -H main --title "Merge ${{ github.ref_name }} into main" --body "Created by Github action"
         env:
