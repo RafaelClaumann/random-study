@@ -37,6 +37,8 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
         fi
         
+    - name: Check out repository code
+      uses: actions/checkout@v2        
     - name: create PR request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
