@@ -13,7 +13,7 @@ jobs:
         result-encoding: string
         retries: 3
         script: |
-          github.rest.breanches.get({
+          github.rest.breanches.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
           })
