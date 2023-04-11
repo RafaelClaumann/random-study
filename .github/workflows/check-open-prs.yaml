@@ -13,12 +13,12 @@ jobs:
         result-encoding: string
         retries: 3
         script: |
-          github.rest.pulls.list({
+          let test = github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
           })
           
-          return "teste"
+          return test
           
     - name: Get result
       run: echo "${{steps.my-script.outputs.result}}"          
