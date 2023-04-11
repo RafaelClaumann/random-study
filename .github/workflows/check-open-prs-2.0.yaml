@@ -42,7 +42,7 @@ jobs:
           if [[ $MAIN != $FEATURE ]]; then
             gh pr create \
               --base main \
-              --head $GITHUB_REPOSITORY \
+              --head $GITHUB_REF_NAME \
               --title "Merge $GITHUB_REF_NAME into main" \
               --assignee $GITHUB_REPOSITORY_OWNER \
               --body "Created by Github action"
