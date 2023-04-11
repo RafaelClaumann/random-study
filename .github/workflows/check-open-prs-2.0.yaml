@@ -14,9 +14,10 @@ jobs:
     - name: create PR request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh pr create \
+      run: |
+            gh pr create \
               --base main \
               --head $GITHUB_REF_NAME \
               --title "Merge $GITHUB_REF_NAME into main" \
-              --assignee $GITHUB_REPOSITORY_OWNER \              
+              --assignee $GITHUB_REPOSITORY_OWNER \
               --body "Created by Github action"
