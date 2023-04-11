@@ -19,7 +19,25 @@ jobs:
             });
           
             console.log(pullRequest)
-            return pullRequest
-          
+            return pullRequest       
+    
+    - name: chck prs 2
+      id: check-pr
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        prs=$(gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --json baseRefName,headRefName \
+            --jq '
+                map(select(.baseRefName == "main" and .headRefName == "github-workflows"))
+                | length
+            ')
+        if ((prs > 0)); then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+        fi
+        
     - name: Get result
-      run: echo "${{steps.my-script.outputs.result}}"          
+      run: |
+        echo "${{steps.check-pr.outputs.skip}}" 
+        echo "${{steps.my-script.outputs.result}}"        
