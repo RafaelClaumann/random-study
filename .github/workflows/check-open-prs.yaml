@@ -13,7 +13,7 @@ jobs:
         result-encoding: string
         retries: 3
         script: |
-          github.rest.branches({
+          github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
           })
