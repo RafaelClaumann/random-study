@@ -13,7 +13,7 @@ jobs:
         result-encoding: string
         retries: 3
         script: |
-          let opts = github.rest.branches.get({
+          let opts = github.rest.branch.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
           })
