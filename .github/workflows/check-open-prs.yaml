@@ -18,6 +18,7 @@ jobs:
               repo: context.repo.repo,
             });
           
+            console.log(pullRequest.owner)
             return pullRequest
           
     - name: Get result
