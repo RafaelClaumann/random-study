@@ -42,7 +42,7 @@ jobs:
     - name: create PR request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh pr create -B main -H "feat/trigger" --title 'Merge feat/trigger into main' --body 'Created by Github action'        
+      run: gh pr create -B main -H "github-workflows" --title 'Merge github-workflows into main' --body 'Created by Github action'        
         
     - name: Get result
       run: |
