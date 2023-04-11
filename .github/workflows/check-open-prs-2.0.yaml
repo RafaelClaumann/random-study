@@ -15,15 +15,25 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-          # The owner and repository name. For example, octocat/Hello-World.
-          # $GITHUB_REPOSITORY
+          prs=$(
+                gh pr list \
+                  --repo $GITHUB_REPOSITORY \
+                  --json baseRefName,headRefName \
+                  --jq 'map(select(.baseRefName == "main" and .headRefName == "$GITHUB_REF_NAME")) | length'
+              )
+
+          if ((prs > 0)); then
+              echo "ja existe um PR aberto de $GITHUB_REF_NAME -> main"
+              exit 0
+          fi
+
           readonly MAIN=$(gh api repos/$GITHUB_REPOSITORY/branches/main | jq -r .commit.sha)
           readonly FEATURE=$(gh api repos/$GITHUB_REPOSITORY/branches/$GITHUB_REF_NAME | jq -r .commit.sha)
           
           if [[ $MAIN != $FEATURE ]]; then
             gh pr create \
               --base main \
-              --head $GITHUB_REF_NAME \
+              --head $GITHUB_REPOSITORY \
               --title "Merge $GITHUB_REF_NAME into main" \
               --assignee $GITHUB_REPOSITORY_OWNER \
               --body "Created by Github action"
