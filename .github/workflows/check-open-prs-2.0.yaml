@@ -15,11 +15,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-            echo $(gh pr diff)
-                        
+          # The owner and repository name. For example, octocat/Hello-World.
+          # $GITHUB_REPOSITORY
+          readonly MAIN=$(gh api repos/$GITHUB_REPOSITORY/branches/main | jq -r .commit.sha)
+          readonly FEATURE=$(gh api repos/$GITHUB_REPOSITORY/branches/$GITHUB_REF_NAME | jq -r .commit.sha)
+          
+          if [[ $MAIN != $FEATURE ]]; then
             gh pr create \
               --base main \
               --head $GITHUB_REF_NAME \
               --title "Merge $GITHUB_REF_NAME into main" \
               --assignee $GITHUB_REPOSITORY_OWNER \
               --body "Created by Github action"
+          fi
