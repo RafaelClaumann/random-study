@@ -1,0 +1,20 @@
+name: Check Open PRS 2.0 Evoluido
+
+on:
+  - workflow_dispatch
+
+jobs:
+  comment:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2        
+    - name: create PR request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh pr create \
+              --base main \
+              --head $GITHUB_REF_NAME \
+              --title "Merge $GITHUB_REF_NAME into main" \
+              --assignee $GITHUB_REPOSITORY_OWNER \              
+              --body "Created by Github action"
