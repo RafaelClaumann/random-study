@@ -1,0 +1,17 @@
+name: Github API Calls
+
+on:
+  - workflow_dispatch
+
+jobs:
+  comment:
+    - uses: actions/github-script@v6
+      id: my-script
+      with:
+        result-encoding: string
+        retries: 3
+        script: |
+          github.rest.branches.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+          })
