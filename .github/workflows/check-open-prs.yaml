@@ -13,10 +13,12 @@ jobs:
         result-encoding: string
         retries: 3
         script: |
-          github.rest.repos.listBranches({
+          github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
           })
+          
+          echo "test=result" >> "$GITHUB_OUTPUT"
           
     - name: Get result
       run: echo "${{steps.my-script.outputs.result}}"          
