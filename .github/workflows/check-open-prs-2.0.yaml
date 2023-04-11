@@ -1,7 +1,9 @@
 name: Check Open PRS 2.0 Evoluido
 
 on:
-  - workflow_dispatch
+  push:
+    branches:
+      - teste/**
 
 jobs:
   comment:
