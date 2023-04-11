@@ -18,7 +18,6 @@ jobs:
             repo: context.repo.repo,
           })
           
-          echo "test=result" >> "$GITHUB_OUTPUT"
           
     - name: Get result
       run: echo "${{steps.my-script.outputs.result}}"          
