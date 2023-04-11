@@ -35,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            echo "$TESTE"
-            echo $(${{ steps.pr_exists.outputs.PR_EXISTS }})
+            echo "${{ steps.pr_exists.outputs.PR_EXISTS }}"
+            
             if [[ $(${{ steps.pr_exists.outputs.PR_EXISTS }}) = true ]]; then
               exit 0
             fi
