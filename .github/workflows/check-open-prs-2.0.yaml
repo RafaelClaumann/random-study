@@ -30,6 +30,9 @@ jobs:
           readonly MAIN=$(gh api repos/$GITHUB_REPOSITORY/branches/main | jq -r .commit.sha)
           readonly FEATURE=$(gh api repos/$GITHUB_REPOSITORY/branches/$GITHUB_REF_NAME | jq -r .commit.sha)
           
+          echo "main sha1: $MAIN"
+          echo "$GITHUB_REF_NAME sha1: $FEATURE"
+          
           if [[ $MAIN != $FEATURE ]]; then
             gh pr create \
               --base main \
