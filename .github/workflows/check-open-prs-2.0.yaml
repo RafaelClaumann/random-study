@@ -23,6 +23,7 @@ jobs:
                   --jq 'map(select(.baseRefName == "main" and .headRefName == "$GITHUB_REF_NAME")) | length'
               )
 
+          echo "prs: $prs"
           if ((prs > 0)); then
               echo "ja existe um PR aberto de $GITHUB_REF_NAME -> main"
               exit 0
