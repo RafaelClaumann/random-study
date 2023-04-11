@@ -29,7 +29,9 @@ jobs:
             if ((prs > 0)); then
                 echo "ja existe um PR aberto de $GITHUB_REF_NAME -> main"
                 echo "PR_EXISTS=true" >> "$GITHUB_OUTPUT"
-            fi    
+                echo "${{ steps.pr_exists.outputs.PR_EXISTS }}"
+            fi
+            echo "${{ steps.pr_exists.outputs.PR_EXISTS }}"
       
       - name: Create PR request
         env:
