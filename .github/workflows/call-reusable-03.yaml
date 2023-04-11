@@ -1,7 +1,9 @@
 name: Call Reusable 03
-
 on:
-  - workflow_dispatch
+  push:
+    branches:
+      - feature**
+      - feat**
 
 jobs:
   call-workflow-in-local-repo-job:
