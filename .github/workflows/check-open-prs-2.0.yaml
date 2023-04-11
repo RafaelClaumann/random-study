@@ -10,7 +10,13 @@ jobs:
    runs-on: ubuntu-latest
    steps:
     - name: Check out repository code
-      uses: actions/checkout@v2        
+      uses: actions/checkout@v2
+      
+    - name: create PR request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh pr create -B main -H "github-workflows" --title 'Merge github-workflows into main' --body 'Created by Github action'
+      
     - name: create PR request
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,3 +47,5 @@ jobs:
               --assignee $GITHUB_REPOSITORY_OWNER \
               --body "Created by Github action"
           fi
+          
+          echo $(gh pr view)
