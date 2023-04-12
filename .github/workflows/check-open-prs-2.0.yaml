@@ -6,16 +6,16 @@ on:
       - teste/**
 
 jobs:
-  comment:
+  CheckPR:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.pr_existence.outputs.PR_EXISTS }}    
     steps:
-
-      
       - name: Check pull request existence
         id: pr_existence
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
+        run: |      
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
             
@@ -27,20 +27,20 @@ jobs:
                 )
 
             echo "PRS entre $GITHUB_REF_NAME -> main: $PRS"
+            echo "PR_EXISTS=false" >> "$GITHUB_OUTPUT"
             if [[ $PRS > 0 ]]; then
                 echo "ja existe um PR aberto entre $GITHUB_REF_NAME -> main"
                 echo "PR_EXISTS=true" >> "$GITHUB_OUTPUT"
             fi
-      
+  CreatePR:
+    if: ${{needs.CheckPR.outputs.PR_EXISTS == 'false' }}
+    runs-on: ubuntu-latest
+    steps:      
       - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            readonly PR_EXISTS=${{ steps.pr_existence.outputs.PR_EXISTS }}
-            if [[ $PR_EXISTS = true ]]; then
-              echo "ja existe um PR aberto entre $GITHUB_REF_NAME -> main"
-              exit 0
-            fi
+            echo ${{needs.CheckPR.outputs.PR_EXISTS}}
 
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
