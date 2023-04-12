@@ -18,16 +18,16 @@ jobs:
         run: |
             gh pr list \
               --repo "rafaelclaumann/random-study" \
-              --json baseRefName, headRefName \
-              --jq 'map(select(.baseRefName == "main" and .headRefName == "teste/321")) | length'              
+              --json "baseRefName,headRefName" \
+              --jq 'map(select(.baseRefName == "main" and .headRefName == "teste/321")) | length             
             
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
             
             gh pr list \
               --repo $GITHUB_REPOSITORY \
-              --json baseRefName, headRefName \
-              --jq 'map(select(.baseRefName == "main" and .headRefName == "$GITHUB_REF_NAME")) | length'
+              --json "baseRefName,headRefName" \
+              --jq "map(select(.baseRefName == main and .headRefName == $GITHUB_REF_NAME)) | length"
             
             prs=$(
                   gh pr list \
