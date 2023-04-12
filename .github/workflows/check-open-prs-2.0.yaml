@@ -36,7 +36,6 @@ jobs:
                 echo ${{ steps.pr_existence.outputs.PR_EXISTS }}
             fi
   CreatePR:
-    if: ${{ needs.CheckPR.outputs.PR_EXISTS == 'false' }}
     runs-on: ubuntu-latest
     steps:      
       - name: Create pull request
