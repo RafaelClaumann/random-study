@@ -43,15 +43,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "exists Pull Request? ${{ needs.CheckPR.outputs.is_pr_present }}"
+          echo
           
           echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
           echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          echo
           
           readonly MAIN_BRANCH_SHA1=$(gh api repos/$GITHUB_REPOSITORY/branches/main | jq -r .commit.sha)
           readonly CURRENT_BRANCH_SHA1=$(gh api repos/$GITHUB_REPOSITORY/branches/$GITHUB_REF_NAME | jq -r .commit.sha)
           
           echo "main branch last commit sha1: $MAIN_BRANCH_SHA1"
           echo "$GITHUB_REF_NAME last commit sha1: $CURRENT_BRANCH_SHA1"
+          echo
           
           if [[ $MAIN_BRANCH_SHA1 != $CURRENT_BRANCH_SHA1 ]]; then
             gh pr create \
