@@ -16,7 +16,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            gh pr list 
+            gh pr list \
               --repo "rafaelclaumann/random-study" \
               --json baseRefName, headRefName \
               --jq 'map(select(.baseRefName == "main" and .headRefName == "teste/321")) | length'              
