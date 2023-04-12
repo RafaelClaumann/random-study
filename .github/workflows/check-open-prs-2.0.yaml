@@ -51,7 +51,7 @@ jobs:
             echo "main sha1: $MAIN"
             echo "$GITHUB_REF_NAME sha1: $FEATURE"
 
-            if [[ $MAIN != $FEATURE ]]; then
+            if [[ $MAIN != $FEATURE ]]; then          
               gh pr create \
                 --repo $GITHUB_REPOSITORY \
                 --base main \
@@ -59,6 +59,10 @@ jobs:
                 --title "Merge $GITHUB_REF_NAME into main" \
                 --assignee $GITHUB_REPOSITORY_OWNER \
                 --body "Created by Github action"
+              
+              echo "create PR: $GITHUB_REF_NAME -> main                  
             fi
 
-            echo $(gh pr view)
+            gh pr view $GITHUB_REF_NAME \
+              --repo $GITHUB_REPOSITORY \
+              --json title,url,changedFiles,state,createdAt,author,assignees
