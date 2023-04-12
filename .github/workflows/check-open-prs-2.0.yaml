@@ -11,9 +11,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-
-      - name: Check PR existence
-        id: pr_exists
+      
+      - name: Create PR request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -30,19 +29,7 @@ jobs:
             echo "prs: $prs"
             if ((prs > 0)); then
                 echo "ja existe um PR aberto de $GITHUB_REF_NAME -> main"
-                echo "PR_EXISTS=true" >> "$GITHUB_OUTPUT"
-                echo "${{ steps.pr_exists.outputs.PR_EXISTS }}"
-            fi
-            echo "${{ steps.pr_exists.outputs.PR_EXISTS }}"
-      
-      - name: Create PR request
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-            echo "${{ steps.pr_exists.outputs.PR_EXISTS }}"
-            
-            if [[ $(${{ steps.pr_exists.outputs.PR_EXISTS }}) = true ]]; then
-              exit 0
+                exit 0
             fi
 
             readonly MAIN=$(gh api repos/$GITHUB_REPOSITORY/branches/main | jq -r .commit.sha)
