@@ -12,7 +12,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       
-      - name: Check PR existence
+      - name: Check pull request existence
         id: pr_existence
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
                 echo "PR_EXISTS=true" >> "$GITHUB_OUTPUT"
             fi
       
-      - name: Create PR request
+      - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
