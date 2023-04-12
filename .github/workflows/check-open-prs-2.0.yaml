@@ -27,20 +27,23 @@ jobs:
                 )
 
             echo "PRS entre $GITHUB_REF_NAME -> main: $PRS"
+            
             echo "PR_EXISTS=false" >> "$GITHUB_OUTPUT"
+            echo ${{ steps.pr_existence.outputs.PR_EXISTS }}
             if [[ $PRS > 0 ]]; then
                 echo "ja existe um PR aberto entre $GITHUB_REF_NAME -> main"
                 echo "PR_EXISTS=true" >> "$GITHUB_OUTPUT"
+                echo ${{ steps.pr_existence.outputs.PR_EXISTS }}
             fi
   CreatePR:
-    if: ${{needs.CheckPR.outputs.PR_EXISTS == 'false' }}
+    if: ${{ needs.CheckPR.outputs.PR_EXISTS == 'false' }}
     runs-on: ubuntu-latest
     steps:      
       - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            echo ${{needs.CheckPR.outputs.PR_EXISTS}}
+            echo ${{ needs.CheckPR.outputs.PR_EXISTS}}
 
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
