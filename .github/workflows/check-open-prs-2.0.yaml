@@ -32,8 +32,6 @@ jobs:
               echo "there is already one Pull Request: $GITHUB_REF_NAME -> main"
               echo "PR_EXISTS=true" >> "$GITHUB_OUTPUT"
           fi
-          
-          echo "exists Pull Request? ${{ steps.pr_existence.outputs.PR_EXISTS }}"
 
   CreatePR:
     needs: CheckPR
