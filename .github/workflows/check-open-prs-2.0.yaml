@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            echo ${{ needs.CheckPR.outputs.PR_EXISTS}}
+            echo "${{ needs.CheckPR.outputs.PR_EXISTS}}"
 
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
