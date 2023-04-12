@@ -60,7 +60,7 @@ jobs:
                 --assignee $GITHUB_REPOSITORY_OWNER \
                 --body "Created by Github action"
               
-              echo "create PR: $GITHUB_REF_NAME -> main                  
+              echo "create PR: $GITHUB_REF_NAME -> main"
             fi
 
             gh pr view $GITHUB_REF_NAME \
