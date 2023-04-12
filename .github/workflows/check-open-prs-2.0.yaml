@@ -17,7 +17,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            export TESTE=le-ai-rapaiz
+            echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+            echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
+            
             prs=$(
                   gh pr list \
                     --repo $GITHUB_REPOSITORY \
