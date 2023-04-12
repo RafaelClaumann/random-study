@@ -61,8 +61,7 @@ jobs:
                 --body "Created by Github action"
               
               echo "create PR: $GITHUB_REF_NAME -> main"
+              gh pr view $GITHUB_REF_NAME \
+                --repo $GITHUB_REPOSITORY \
+                --json title,url,changedFiles,state,createdAt,author,assignees              
             fi
-
-            gh pr view $GITHUB_REF_NAME \
-              --repo $GITHUB_REPOSITORY \
-              --json title,url,changedFiles,state,createdAt,author,assignees
