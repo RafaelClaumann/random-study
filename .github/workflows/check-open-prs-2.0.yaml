@@ -55,6 +55,7 @@ jobs:
           
           if [[ $MAIN_BRANCH_SHA1 != $CURRENT_BRANCH_SHA1 ]]; then
             gh pr create \
+              --repo $GITHUB_REPOSITORY \
               --base main \
               --head $GITHUB_REF_NAME \
               --title "Merge $GITHUB_REF_NAME into main" \
