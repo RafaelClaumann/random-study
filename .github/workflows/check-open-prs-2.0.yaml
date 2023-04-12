@@ -37,13 +37,14 @@ jobs:
             fi
   CreatePR:
     needs: CheckPR
+    if: ${{ needs.CheckPR.outputs.output1 == 'false' }}
     runs-on: ubuntu-latest
     steps:      
       - name: Create pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            echo "${{ needs.CheckPR.outputs.PR_EXISTS}}"
+            echo "${{ needs.CheckPR.outputs.output1 }}"
 
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
