@@ -16,6 +16,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+            gh pr list
+            
             echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
             echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
             
