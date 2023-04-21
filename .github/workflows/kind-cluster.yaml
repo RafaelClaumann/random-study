@@ -12,6 +12,9 @@ jobs:
           version: "v0.11.1"
       - name: Testing
         run: |
+          kubectl apply -f deployment.yaml
+          kubectl run --rm -it nginx --image=nginx - curl coffee-shop-svc:8080
+        
           kubectl cluster-info
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)
