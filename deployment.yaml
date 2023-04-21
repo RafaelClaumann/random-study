@@ -16,7 +16,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: coffee-shop-deployment
-  namespace: develop
   labels:
     section: 07-services-e-networking
 spec:
