@@ -3,12 +3,14 @@ kind: Service
 metadata:
   name: coffee-shop-svc
 spec:
+  type: ClusterIP
   selector:
     app: coffee-shop
   ports:
     - name: http
-      port: 80
-      targetPort: 8080
+      port: 8080
+      protocol: TCP
+      targetPort: 80
 
 ---
 
