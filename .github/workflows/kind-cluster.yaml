@@ -13,7 +13,14 @@ jobs:
       - name: Testing
         run: |
           kubectl apply -f deployment.yaml
-          kubectl run --rm -it nginx --image=nginx - curl coffee-shop-svc:8080
+          
+          kubectl wait \
+          --namespace=default \
+          --for=condition=ready pod \
+          --selector='app=coffee-shop' \
+          --timeout=-1s
+          
+          kubectl run --rm -it nginx --image=nginx -- curl coffee-shop-svc:8080
         
           kubectl cluster-info
           kubectl get pods -n kube-system
