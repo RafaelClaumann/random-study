@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-shop-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: coffee-shop
+  ports:
+    - name: svc-port
+      port: 8080
+      targetPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-shop-deployment
+  labels:
+    section: 07-services-e-networking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee-shop
+  template:
+    metadata:
+      labels:
+        app: coffee-shop
+    spec:
+      initContainers:
+        - name: init-html-homepage
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args: ["echo \"<h1> Hello, this is Coffee shop API </h1>\" > usr/share/nginx/html/index.html;"]
+          volumeMounts:
+            - name: init-html-volume
+              mountPath: /usr/share/nginx/html
+      containers:
+        - image: nginx
+          name: coffee-container
+          ports:
+            - name: coffee-port
+              containerPort: 80
+          volumeMounts:
+            - name: init-html-volume
+              mountPath: /usr/share/nginx/html/
+      volumes:
+        - name: init-html-volume
+          emptyDir: {}
+      restartPolicy: Always

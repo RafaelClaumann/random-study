@@ -12,11 +12,39 @@ jobs:
       with:
         result-encoding: string
         retries: 3
-        script: |
-          let opts = github.rest.pulls.list({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-          })
+        script: |          
+            const { data: pullRequest } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
           
-          const issues = await github.request(opts)
-          console.log(issues)
+            console.log(pullRequest)
+            return pullRequest       
+    
+    - name: chck prs 2
+      id: check-pr
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        prs=$(gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --json baseRefName,headRefName \
+            --jq '
+                map(select(.baseRefName == "main" and .headRefName == "github-workflows"))
+                | length
+            ')
+        if ((prs > 0)); then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+        fi
+        
+    - name: Check out repository code
+      uses: actions/checkout@v2        
+    - name: create PR request
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh pr create -B main -H "github-workflows" --title 'Merge github-workflows into main' --body 'Created by Github action'        
+        
+    - name: Get result
+      run: |
+        echo "${{steps.check-pr.outputs.skip}}" 
+        echo "${{steps.my-script.outputs.result}}" 
