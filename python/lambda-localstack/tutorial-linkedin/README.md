@@ -22,6 +22,7 @@ docker-compose up -d
 zip handler.zip handler.py
 
 # Criando função lambda
+# https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
 aws lambda create-function \
     --endpoint=http://localhost:4566 \
     --function-name minha-funcao \
@@ -31,15 +32,19 @@ aws lambda create-function \
     --role arn:aws:iam::000000000000:role/lambda-execution
 
 # Listando funções criadas
+# https://docs.aws.amazon.com/cli/latest/reference/lambda/list-functions.html
 aws lambda list-functions --endpoint=http://localhost:4566
 
 # A lambda só funcionará se o resultado desse comando for "Active"
+# https://docs.aws.amazon.com/cli/latest/reference/lambda/get-function.html
+# https://docs.localstack.cloud/user-guide/aws/lambda/#function-in-pending-state
 aws lambda get-function \
     --function-name minha-funcao \
     --endpoint-url http://localhost:4566 \
     --query 'Configuration.State'
 
 # Invocando a função
+# https://docs.aws.amazon.com/cli/latest/reference/lambda/invoke.html
 aws lambda invoke \
     --endpoint=http://localhost:4566 \
     --function-name minha-funcao \
