@@ -10,17 +10,24 @@ O objetivo é criar uma função lambda que realiza uma chamada a uma API extern
 
 ## Criando zip com o código python e dependência requests
 ``` bash
+# diretório atual
 echo $PWD
     ~/random-study/python/lambda-localstack/lambda-requests
 
+# navegando até o diretório 'lambda/'
 cd lambda/
 
+# instalando/baixando as dependencias de requirements.txt no diretório atual, isto é, 'lambda/'
 pip install -r requirements.txt -t .
 
+# criando zip ignorando arquivos da pasta 'bin/' e 'requirements.txt'
 zip -r ../lambda_function.zip * -x "bin/*" requirements.txt
 
+# voltando para o diretório superior 'lambda-requests/'
 cd ..
 
+# listando arquivos do diretório 'lambda-requests/'
+# o lambda_funcion.zip foi criado com sucesso
 tree -L 1 .
     .
     ├── docker-compose.yaml
