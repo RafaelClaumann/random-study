@@ -1,5 +1,5 @@
 # Criando lambda com dependência sem usar Lambda Layers
-O objetivo é realizar uma requisição em uma API externa usando a biblioteca requests do python 
+O objetivo é realizar uma requisição em uma API externa usando a biblioteca requests do python dentro de uma função lambda usando localstack
 
 ## Links
 - [Creating a ZIP file for an AWS Lambda Python function](https://alexharv074.github.io/2018/08/18/creating-a-zip-file-for-an-aws-lambda-python-function.html)
