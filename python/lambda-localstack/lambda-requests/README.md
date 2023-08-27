@@ -88,6 +88,12 @@ aws lambda invoke \
 aws lambda delete-function \
     --function-name minha-funcao \
     --endpoint-url http://localhost:4566
+
+# atualizando código(zip) da função lambda
+aws lambda update-function-code \
+    --function-name minha-funcao \
+    --endpoint=http://localhost:4566 \
+    --zip-file fileb://lambda_function.zip
 ```
 
 ## Understanding linux zip command with examples
@@ -102,5 +108,5 @@ zip -r ../lambda.zip * -x "bin/*"
 zip -r ../lambda.zip * -x "bin/*" requirements.txt
 
 # atualizar o arquivo lambda_function no zip existente
-zip -g ../lambda.zip lambda_function.py
+zip -g ../lambda_function.zip lambda_function.py
 ```
