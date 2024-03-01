@@ -1,0 +1,16 @@
+## LISTS EXAMPLE
+social:
+  media:
+    accounts:
+      - name: Twitter
+        username: Rafael
+        url: https://twitter.com
+      - name: Facebook
+        username: Rafael
+        url: https://facebook.com
+
+## MAPS EXAMPLE
+bookmarks:
+  websites:
+    Twitter: https://twitter.com
+    Facebook: https://facebook.com
