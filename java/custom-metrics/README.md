@@ -4,7 +4,7 @@
 
 - build java app `mvn clean install`
 - build docker image `docker build -t demoapp:1.0`
-- check prometheus config at `prometheus.yml`
+- check prometheus config at `prometheus-settings.yml`
 - start docker-compose `docker-compose up -d`
 - check spring-boot-actuator exposed endpoints at `resources/application.properties`
 - view spring metrics at `localhost:8080/actuator/prometheus`
