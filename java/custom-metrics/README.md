@@ -9,3 +9,15 @@
 - check spring-boot-actuator exposed endpoints at `resources/application.properties`
 - view spring metrics at `localhost:8080/actuator/prometheus`
 - view prometheus metrics at `order_books_total`, `order_movies_total`, `number_of_active_users` at `localhost:9090`
+
+
+O método abaixo foi criado para alterar a "quantidade de usuários ativos" e facilitar a visualização das métricas de forma gráfica no prometheus.
+```java
+    // com.dev.rafael.custommetrics.ItemService.scheduledActiveUsersGenerator
+    @Scheduled(fixedRate = 5000)
+    public void scheduledActiveUsersGenerator() {
+        int upperBound = 2000000;
+        activeUsers.set(new Random().nextInt(upperBound));
+    }
+
+```
