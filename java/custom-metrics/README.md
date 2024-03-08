@@ -11,13 +11,23 @@
 - view prometheus metrics at `order_books_total`, `order_movies_total`, `number_of_active_users` at `localhost:9090`
 
 
-O método abaixo foi criado para alterar a "quantidade de usuários ativos" e facilitar a visualização das métricas de forma gráfica no prometheus.
+O método `scheduledActiveUsersGenerator` foi criado para alterar a quantidade de usuários ativos e facilitar a visualização da métrica `number_of_active_users` de forma gráfica no prometheus.
 ```java
-    // com.dev.rafael.custommetrics.ItemService.scheduledActiveUsersGenerator
+// com.dev.rafael.custommetrics.ItemService.scheduledActiveUsersGenerator
+@Component
+public class ItemService {
+
+    private final AtomicInteger activeUsers;
+
+    public ItemService(CompositeMeterRegistry meterRegistry) {
+        activeUsers = meterRegistry.gauge("number.of.active.users", new AtomicInteger(0));
+    }
+
     @Scheduled(fixedRate = 5000)
     public void scheduledActiveUsersGenerator() {
         int upperBound = 2000000;
         activeUsers.set(new Random().nextInt(upperBound));
     }
-
+}
 ```
+![image](https://github.com/RafaelClaumann/random-study/assets/25152862/4a6ce754-165b-41f8-9447-2ea6d09ccb9e)
