@@ -6,6 +6,6 @@ services:
   prometheus:
     image: prom/prometheus
     volumes:
-      - ./prometheus-settings.yml:/etc/prometheus/prometheus-settings.yml
+      - ./prometheus-settings.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
