@@ -2,6 +2,7 @@ package com.dev.rafael.custommetrics;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -15,18 +16,20 @@ public class ItemService {
 
     private final Counter bookCounter;
     private final Counter movieCounter;
-    private AtomicInteger activeUsers;
+    private final AtomicInteger activeUsers;
 
     public ItemService(CompositeMeterRegistry meterRegistry) {
         bookCounter = meterRegistry.counter("order.books");
         movieCounter = meterRegistry.counter("order.movies");
         activeUsers = meterRegistry.gauge("number.of.active.users", new AtomicInteger(0));
-
-        activeUsers.set(new Random().nextInt());
     }
 
-    public Number fetchActiveUsers() {
-        return 5;
+    // https://spring.io/guides/gs/scheduling-tasks
+    // https://ioflood.com/blog/java-random/
+    @Scheduled(fixedRate = 5000)
+    public void scheduledActiveUsersGenerator() {
+        int upperBound = 2000000;
+        activeUsers.set(new Random().nextInt(upperBound));
     }
 
     public String orderBook() {
