@@ -1,0 +1,11 @@
+services:
+  demoapp:
+    image: demoapp:1.0
+    ports:
+      - "8080:8080"
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus-settings.yml:/etc/prometheus/prometheus-settings.yml
+    ports:
+      - "9090:9090"
