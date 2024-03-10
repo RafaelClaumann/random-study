@@ -6,26 +6,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Timed
+@Timed(value = "index.controller")
 public class Controller {
 
     @Autowired
     ItemService itemService;
 
     @GetMapping("/")
-    @Timed("api")
+    @Timed(value = "index.api")
     public String index() {
         return "Greetings from Spring Boot!";
     }
 
     @GetMapping("/books")
-    @Timed("books.api")
+    @Timed(value = "books.api")
     public String orderBook() {
         return itemService.orderBook();
     }
 
     @GetMapping("/movies")
-    @Timed("movies.api")
+    @Timed(value = "movies.api")
     public String orderMovie() {
         return itemService.orderMovie();
     }
