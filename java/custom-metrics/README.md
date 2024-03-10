@@ -13,6 +13,7 @@
 - view books api(@Timed) metrics `http://localhost:8080/actuator/metrics/books.api`
 - view movies api(@Timed) metrics `http://localhost:8080/actuator/metrics/movies.api`
 - view index api(@Timed) metrics `http://localhost:8080/actuator/metrics/index.api`
+- - view index controller(@Timed) metrics `http://localhost:8080/actuator/metrics/index.controller`
 - view prometheus metrics `order_books_total`, `order_movies_total`, `number_of_active_users` at `localhost:9090`
 
 O método `scheduledActiveUsersGenerator` foi criado para alterar a quantidade de usuários ativos e facilitar a visualização da métrica `number_of_active_users` de forma gráfica no prometheus.
