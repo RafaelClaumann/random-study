@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Timed(value = "index.controller")
-public class Controller {
+public class TimerAnnotationController {
 
     @Autowired
     ItemService itemService;
