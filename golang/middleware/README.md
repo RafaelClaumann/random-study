@@ -1,4 +1,12 @@
-# Exemplo 01
+# MIddleware Chain
+
+Exemplo demonstando o empilhamento da cadeia de middlewares do Go.
+
+- Handlers rota "/0": `standard`.
+- Handlers Rota "/1": `standard`, `middleware01`, `middleware02`
+- Handlers Rota "/2": `standard`, `middleware01`, `middleware02`, `middleware03`
+
+# Exemplo 01 - Sem justinas/alice
 
 ``` go
 func main() {
@@ -15,7 +23,7 @@ func main() {
 }
 ```
 
-# Exemplo 02 - Usando justinas/alice
+# Exemplo 02 - Com justinas/alice
 
 ``` go
 // go mod init
