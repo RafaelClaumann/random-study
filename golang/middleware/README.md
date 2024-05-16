@@ -1,4 +1,4 @@
-# MIddleware Chain
+# Middleware Chain
 
 Exemplo demonstando o empilhamento da cadeia de middlewares do Go.
 
